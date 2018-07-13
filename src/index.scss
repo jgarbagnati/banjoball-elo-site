@@ -1,0 +1,138 @@
+// Global UI variables
+$primary-color-layout: #ddd;
+$navbar-primary-color: #272727;
+$navbar-secondary-color: #558a3e;
+$primary-gradient-color: #264a21;
+$secondary-gradient-color: #365922;
+$tertiary-gradient-color: #5b6c51;
+$primary-color-font: #ffffff;
+$secondary-color-font: #888888;
+$outline-color: #CECECE;
+
+$primary-font: 'Lato', sans-serif;
+$secondary-font: 'Roboto', sans-serif;
+
+#root, #inferno-root {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+	overflow-x: hidden;
+	
+	#background-cntr {
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		width: 100%;
+		
+		.left-cntr, .right-cntr {
+			position: absolute;
+			width: calc(50% - 550px);
+			height: 100%;
+		}
+		
+		.left-cntr {
+			left: 0;
+			
+			background: repeating-linear-gradient(100deg,
+				$primary-gradient-color,
+				$primary-gradient-color 200px,
+				$tertiary-gradient-color 200px,
+				$tertiary-gradient-color 202px,
+				$secondary-gradient-color 202px,
+				$secondary-gradient-color 402px,
+				$tertiary-gradient-color 402px,
+				$tertiary-gradient-color 404px
+			);
+		}
+		
+		.right-cntr {
+			right: 0;
+			
+			background: repeating-linear-gradient(80deg,
+				$primary-gradient-color,
+				$primary-gradient-color 200px,
+				$tertiary-gradient-color 200px,
+				$tertiary-gradient-color 202px,
+				$secondary-gradient-color 202px,
+				$secondary-gradient-color 402px,
+				$tertiary-gradient-color 402px,
+				$tertiary-gradient-color 404px
+			);
+		}
+	}
+	
+	#nav-bar-top {
+		position: relative;
+		height: 100px;
+		width: 100%;
+		
+		.top-cntr, .bottom-cntr {
+			position: relative;
+			width: 100%;
+		}
+		
+		.top-cntr {
+			height: 60%;
+			background-color: $navbar-primary-color;
+			
+			.icon {
+				position: absolute;
+				left: calc(50% - 550px);
+				width: 277px;
+				height: 60px;
+				
+				background: url(../res/logo/logo.png) no-repeat center center;
+				background-size: cover;
+				cursor: pointer;
+			}
+		}
+		
+		.bottom-cntr {
+			height: 40%;
+			background-color: $navbar-secondary-color;
+			
+			.nav-btns-cntr {
+				width: 1100px;
+				margin-left: calc(50% - 550px);
+				.nav-season-btn {
+					display: inline-block;
+					width: auto;
+					padding: 10px 15px;
+					padding-bottom: 7px;
+					height: 20px;
+					cursor: pointer;
+					
+					color: lighten($navbar-secondary-color, 25%);
+					font-family: $primary-font, sans-serif;
+					font-weight: bold;
+					border-bottom: 3px solid;
+					border-color: $navbar-secondary-color;
+					
+					&:hover {
+						color: #fff;
+						border-color: #fff;
+					}
+				}
+				
+				.active {
+					.nav-season-btn {
+						color: #fff;
+						border-color: #fff;
+					}
+				}
+			}
+		}
+	}
+	
+	#main-cntr {
+		position: relative;
+		background-color: $primary-color-layout;
+		left: calc(50% - 550px);
+		width: 1100px;
+		min-height: calc(100vh - 100px);
+	}
+}
+
+// Components
