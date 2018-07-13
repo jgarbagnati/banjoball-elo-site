@@ -1,0 +1,15 @@
+#home-cntr {
+	position: relative;
+	width: 100%;
+	min-height: calc(100vh - 100px);
+
+	.left-cntr {
+		width: 700px;
+	}
+	
+	.right-cntr {
+		width: 399px;
+		border-left: 1px solid;
+		border-color: $outline-color;
+	}
+}

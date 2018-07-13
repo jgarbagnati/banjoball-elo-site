@@ -1,6 +1,8 @@
 import {render, Component} from 'inferno';
 import {HashRouter, Route, Switch} from 'inferno-router';
-import NavbarTop from './components/NavbarTop';
+import NavbarTop from './components/NavbarTop/NavbarTop';
+import Home from './components/Home/Home';
+import Season from './components/Season/Season';
 
 export default class App extends Component {
 	constructor(props) {
@@ -26,8 +28,8 @@ export default class App extends Component {
 					<NavbarTop update={this.update} />
 					<div id="main-cntr">
 						<Switch>
-							<Route exact path="/" component={Home}/>
-							<Route path="/season-1" component={Team}/>
+							<Route exact path="/" render={() =><Home />} />
+							<Route path="/season-1" render={() =><Season season={1} />} />
 						</Switch>
 					</div>
 				</div>
