@@ -8,8 +8,7 @@
 .search-input {
 	padding: 1px 10px;
 	left: 10px;
-	width: calc(100% - 60px);
-	width: 298px;
+	width: calc(100% - 100px);
 	border: solid 1px $outline-color;
 	outline-color: lighten($navbar-secondary-color, 25%);
 	outline-right: 0px;

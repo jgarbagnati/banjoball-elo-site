@@ -31,11 +31,12 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.rank {
-				width: 20px;
+				width: 40px;
 			}
 			
 			.name {
 				width: 135px;
+				text-align: left;
 			}
 			
 			.elo {
@@ -43,7 +44,7 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.winloss {
-				width: 75px;
+				width: 110px;
 				margin: 0;
 			}
 		}
@@ -61,10 +62,6 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 			
 			&.alt {
 				background-color: $table-color-secondary;
-			}
-			
-			.name {
-				text-align: left;
 			}
 		}
 		
