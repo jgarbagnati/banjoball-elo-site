@@ -3,6 +3,8 @@ $primary-color-layout: #ddd;
 $primary-gradient-color: #264a21;
 $secondary-gradient-color: #365922;
 $tertiary-gradient-color: #5b6c51;
+$navbar-primary-color: #272727;
+$navbar-secondary-color: #558a3e;
 
 // Fonts
 $primary-font: 'Lato', sans-serif;
@@ -11,7 +13,10 @@ $secondary-font: 'Roboto', sans-serif;
 // Font colors
 $primary-color-font: #ffffff;
 $secondary-color-font: #888888;
-$outline-color: #CECECE;
+$outline-color: #c1c1c1;
+
+// Positioning
+$main-cntr-min-height: calc(100vh - 100px);
 
 #root, #inferno-root {
 	position: absolute;
@@ -69,7 +74,7 @@ $outline-color: #CECECE;
 		background-color: $primary-color-layout;
 		left: calc(50% - 550px);
 		width: 1100px;
-		min-height: calc(100vh - 100px);
+		min-height: $main-cntr-min-height;
 	}
 }
 

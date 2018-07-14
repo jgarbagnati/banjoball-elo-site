@@ -1,15 +1,66 @@
 #home-cntr {
 	position: relative;
 	width: 100%;
-	min-height: calc(100vh - 100px);
-
+	height: 100%;
+	
+	.left-cntr, .right-cntr {
+		display: inline-block;
+		vertical-align: top;
+		position: relative;
+		min-height: $main-cntr-min-height;
+	}
+	
 	.left-cntr {
 		width: 700px;
+		overflow-x: hidden;
 	}
 	
 	.right-cntr {
 		width: 399px;
-		border-left: 1px solid;
-		border-color: $outline-color;
+		border-left: 1px solid $outline-color;
+		overflow-x: hidden;
+	}
+	
+	.header-cntr, .search-cntr {
+		padding: 10px;
+		height: 40px;
+		width: calc(100% - 20px);
+		border-bottom: 1px solid $outline-color;
+		font-family: $primary-font, sans-serif;
+	}
+	
+	.header-cntr {
+		padding-top: 6px;
+		padding-bottom: 14px;
+		font-size: 36px;
+		text-align: center;
+	}
+	
+	.search-cntr {
+		position: relative;
+		.search-input, .search-btn {
+			position: absolute;
+			top: 10px;
+			height: 36px;
+			padding: 1px;
+		}
+	
+		.search-input {
+			padding: 1px 10px;
+			left: 10px;
+			width: 298px;
+			border: solid 1px $outline-color;
+		}
+		
+		.search-btn {
+			right: 10px;
+			width: 56px;
+			background: $primary-gradient-color;
+			border: solid 1px $outline-color;
+			text-align: center;
+			padding-top: 8px;
+			height: 29px;
+			color: lighten($navbar-secondary-color, 25%);
+		}
 	}
 }
