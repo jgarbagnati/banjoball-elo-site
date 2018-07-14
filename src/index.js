@@ -40,7 +40,7 @@ export default class App extends Component {
 		let dbpath = new Uint8Array(this.state.lastXhr.response);
 		let db = new SQL.Database(dbpath);
 		
-		let query = db.prepare("SELECT name,elo,win,loss FROM players WHERE win > 0 ORDER BY elo desc");
+		let query = db.prepare("SELECT name,elo,win,loss FROM players WHERE win + loss > 0 ORDER BY elo desc");
 		while(query.step()) {
 			this.state.players.push(query.getAsObject());
 		}
