@@ -12,10 +12,20 @@ export default class Home extends Component {
 			currSeason: 0
 		}
 		this.updateSearchBarValue = this.updateSearchBarValue.bind(this);
+		this.search = this.search.bind(this);
 	}
 	
 	updateSearchBarValue(val) {
 		this.state.searchValue = val;
+	}
+	
+	search() {
+		let search = this.state.searchValue;
+		let players = search.split(",");
+		for (let i = 0; i < players.length; ++i) {
+			let player = players[i].trim(" ");
+			players[i] = player;
+		}
 	}
 	
 	render() {
@@ -28,8 +38,8 @@ export default class Home extends Component {
 				</div>
 				<div className="right-cntr">
 					<div className="search-cntr">
-						<SearchBar value={this.state.value}
-							updateValue={this.updateSearchBarValue} />
+						<SearchBar updateValue={this.updateSearchBarValue}
+							value={this.state.value} onSearch={this.search} />
 					</div>
 				</div>
 			</div>

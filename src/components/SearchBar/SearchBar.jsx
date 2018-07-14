@@ -12,6 +12,7 @@ export default class SearchBar extends Component {
 		this.onInput = this.onInput.bind(this);
 		this.onFocus = this.onFocus.bind(this);
 		this.onBlur = this.onBlur.bind(this);
+		this.onKeyDown = this.onKeyDown.bind(this);
 	}
 	
 	onInput(evt) {
@@ -27,11 +28,18 @@ export default class SearchBar extends Component {
 		this.setState({active: false});
 	}
 	
+	onKeyDown(evt) {
+		if (evt.key === "Enter") {
+			this.props.onSearch();
+		}
+	}
+	
 	render() {
 		let btnClass = 'search-btn' + ((this.state.active)? ' active': '');
 		return (
 			<div>
-				<div className={btnClass}>
+				<div className={btnClass}
+					onClick={this.props.onSearch}>
 					Search
 				</div>
 				<input type='text' placeholder='Player 1, Player 2, Player 3...'
@@ -39,7 +47,8 @@ export default class SearchBar extends Component {
 					value={this.props.value}
 					onInput={this.onInput}
 					onFocus={this.onFocus} 
-					onBlur={this.onBlur} />
+					onBlur={this.onBlur}
+					onKeyDown={this.onKeyDown} />
 			</div>
 		);
 	}
