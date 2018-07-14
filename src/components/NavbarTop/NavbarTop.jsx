@@ -16,7 +16,7 @@ export default class NavbarTop extends Component {
 			<div id="nav-bar-top">
 				<div className="top-cntr">
 					<Link to="/" exact>
-						<div className="icon" />
+						<div onclick={this.refresh} className="icon" />
 					</Link>
 				</div>
 				<div className="bottom-cntr">
