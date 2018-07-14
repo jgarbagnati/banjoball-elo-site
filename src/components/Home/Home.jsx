@@ -1,5 +1,6 @@
 import {Component} from 'inferno';
 import {Link, NavLink} from 'inferno-router';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default class Home extends Component {
 	constructor(props) {
@@ -7,25 +8,14 @@ export default class Home extends Component {
 		
 		this.state = {
 			height: 0,
-			value: '',
+			searchValue: '',
 			currSeason: 0
 		}
-		
-		this.onFocus = this.onFocus.bind(this);
-		this.onBlur = this.onBlur.bind(this);
-		this.onInput = this.onInput.bind(this);
+		this.updateSearchBarValue = this.updateSearchBarValue.bind(this);
 	}
 	
-	onFocus() {
-		
-	}
-	
-	onBlur() {
-		
-	}
-	
-	onInput() {
-		
+	updateSearchBarValue(val) {
+		this.state.searchValue = val;
 	}
 	
 	render() {
@@ -38,15 +28,8 @@ export default class Home extends Component {
 				</div>
 				<div className="right-cntr">
 					<div className="search-cntr">
-						<div className="search-btn">
-							Search
-						</div>
-						<input type='text' placeholder='Player 1, Player 2, Player 3...'
-							className='search-input'
-							value={this.props.value}
-							onFocus={this.onFocus}
-							onBlur={this.onBlur}
-							onInput={this.onInput} />
+						<SearchBar value={this.state.value}
+							updateValue={this.updateSearchBarValue} />
 					</div>
 				</div>
 			</div>

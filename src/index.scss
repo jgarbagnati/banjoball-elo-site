@@ -78,7 +78,10 @@ $main-cntr-min-height: calc(100vh - 100px);
 	}
 }
 
-// Components
+// Minor Components - Can overwrite these styles
+@import "components/SearchBar/searchBar";
+
+// Major Components - Will overwrite other styles
 @import "components/NavbarTop/navbarTop";
 @import "components/Home/home";
 @import "components/Season/season";

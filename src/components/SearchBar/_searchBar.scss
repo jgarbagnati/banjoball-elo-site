@@ -1,0 +1,38 @@
+.search-input, .search-btn {
+	position: absolute;
+	top: 10px;
+	height: 36px;
+	padding: 1px;
+}
+
+.search-input {
+	padding: 1px 10px;
+	left: 10px;
+	width: calc(100% - 60px);
+	width: 298px;
+	border: solid 1px $outline-color;
+	outline-color: lighten($navbar-secondary-color, 25%);
+	outline-right: 0px;
+}
+
+.search-btn {
+	right: 10px;
+	width: 56px;
+	background: $primary-gradient-color;
+	border: solid 1px $outline-color;
+	text-align: center;
+	padding-top: 8px;
+	height: 29px;
+	color: lighten($navbar-secondary-color, 25%);
+	cursor: pointer;
+	user-select: none;
+	outline-left: 0px;
+	
+	&.active {
+		outline: solid 1px lighten($navbar-secondary-color, 25%);
+	}
+	
+	&:active {
+		filter: brightness(50%);
+	}
+}
