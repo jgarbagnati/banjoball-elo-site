@@ -40,6 +40,7 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
+				vertical-align: bottom;
 			}
 			
 			.elo {
