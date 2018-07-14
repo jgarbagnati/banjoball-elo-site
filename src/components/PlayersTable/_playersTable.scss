@@ -1,7 +1,7 @@
 $table-color-primary: #efefef;
 $table-color-secondary: lighten($navbar-secondary-color, 50%);
-$winloss-loss-color: #f37373;
-$winloss-win-color: #7378f3;
+$winloss-loss-color: $navbar-primary-color;
+$winloss-win-color: $navbar-secondary-color;
 $winloss-font-color: lighten($navbar-secondary-color, 50%);
 
 #player-table-cntr-outer {
