@@ -13,7 +13,12 @@ export default class PlayersTableRow extends Component {
 		let winrate = (Math.floor((this.props.wins / gamesSafe) * 1000) / 10).toFixed(1);
 		let winbarStyle = {
 			width: winrate + '%'
-		}
+		};
+		
+		let wins = (this.props.wins > 0)? 
+			(<span className="txt left">  {this.props.wins + "W"} </span>): null;
+		let loss = (this.props.loss > 0)? 
+			(<span className="txt right"> {this.props.loss + "L"} </span>): null;
 		return (
 			<div className={cntrClass}>
 				<div className='rank'>
@@ -27,13 +32,11 @@ export default class PlayersTableRow extends Component {
 				</div>
 				<div className='winloss'>
 					<div className='winloss-bar'>
-						<span className="txt">
-							{this.props.loss + "L"}
-						</span>
 						<div className='win-bar' style={winbarStyle}>
-							<span className="txt">
-								{this.props.wins + "W"}
-							</span>
+						</div>
+						<div className='txt-cntr'>
+							{wins}
+							{loss}
 						</div>
 					</div>
 					<div className='winloss-rate'>

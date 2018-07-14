@@ -71,19 +71,33 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 					position: absolute;
 					width: calc(100% - 40px);
 					height: 24px;
-					top: -3px;
+					top: -4px;
 					background-color: $winloss-loss-color;
 					border: solid 1px $outline-color;
 					border-radius: 3px;
 					overflow: hidden;
 					color: $winloss-font-color;
 					
-					.txt {
+					.txt-cntr {
 						position: absolute;
-						font-size: 12px;
-						right: 4px;
-						top: 5px;
-						text-align: right;
+						height: 100%;
+						width: 100%;
+						
+						.txt {
+							position: absolute;
+							font-size: 12px;
+							top: 5px;
+							
+							&.left {
+								left: 4px;
+								text-align: left;
+							}
+							
+							&.right {							
+								right: 4px;
+								text-align: right;
+							}
+						}
 					}
 					
 					.win-bar {
@@ -93,19 +107,13 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 						overflow: hidden;
 						top: 0px;
 						background-color: $winloss-win-color;
-						
-						.txt {
-							left: 4px;
-							right: 0;
-							text-align: left;
-						}
 					}
 				}
 				
 				.winloss-rate {
 					position: absolute;
 					right: -11px;
-					top: 4px;
+					top: 2px;
 					text-align: center;
 					width: 40px;
 				}
