@@ -19,10 +19,13 @@ export default class App extends Component {
 	}
 	
 	componentDidMount() {
-		let xhr = new XMLHttpRequest();
-		xhr.open('GET', './res/db/elo.db', true);
-		xhr.responseType = 'arraybuffer';
-		xhr.onload = this.onDB;
+		window.requestAnimationFrame(() => {
+			let xhr = new XMLHttpRequest();
+			xhr.open('GET', './res/db/elo.db', true);
+			xhr.responseType = 'arraybuffer';
+			xhr.onload = this.onDB;
+			xhr.send();
+		});
 	}
 	
 	update() {
