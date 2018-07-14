@@ -32,8 +32,9 @@
 	.header-cntr {
 		padding-top: 6px;
 		padding-bottom: 14px;
+		padding-left: 20px;
+		width: calc(100% - 30px);
 		font-size: 36px;
-		text-align: center;
 	}
 	
 	.search-cntr {
