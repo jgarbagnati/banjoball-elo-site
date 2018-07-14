@@ -2,13 +2,16 @@ import {render, Component} from 'inferno';
 import {HashRouter, Route, Switch} from 'inferno-router';
 import NavbarTop from './components/NavbarTop/NavbarTop';
 import Home from './components/Home/Home';
+import Loading from './components/Loading/Loading';
 import Season from './components/Season/Season';
 
 export default class App extends Component {
 	constructor(props) {
 		super(props);
 		
-		this.state = {};
+		this.state = {
+			loading: true
+		};
 		
 		this.update = this.update.bind(this);
 	}
@@ -18,6 +21,7 @@ export default class App extends Component {
 	}
 	
 	render() {
+		let loadingClass = (this.state.loading)? "active": "";
 		return (
 			<HashRouter>
 				<div id='inferno-root'>
@@ -32,6 +36,7 @@ export default class App extends Component {
 							<Route path="/season-1" render={() =><Season season={1} />} />
 						</Switch>
 					</div>
+					<Loading />
 				</div>
 			</HashRouter>
 		);

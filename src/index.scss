@@ -25,6 +25,7 @@ $main-cntr-min-height: calc(100vh - 100px);
 	width: 100%;
 	min-height: 100%;
 	overflow-x: hidden;
+	background: $navbar-primary-color;
 	
 	#background-cntr {
 		position: absolute;
