@@ -24,8 +24,9 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 		.player-table-row,
 		#player-table-header {
 			width: calc(100% - 20px);
-			height: 20px;
+			height: 19px;
 			padding: 10px;
+			padding-top: 11px;
 			overflow: hidden;
 			
 			.rank, .name, .elo, .winloss {
@@ -103,8 +104,10 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 				
 				.winloss-rate {
 					position: absolute;
-					right: 0;
-					top: 3px;
+					right: -11px;
+					top: 4px;
+					text-align: center;
+					width: 40px;
 				}
 			}
 		}
