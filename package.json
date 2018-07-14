@@ -4,15 +4,15 @@
   "description": "Banjoball Elo Site",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build-sass && npm run webpack && npm run copy-res",
-    "build-production": "npm run build-sass && webpack && npm run copy-res",
+    "build-dev": "npm run build-sass && npm run webpack && npm run copy-res",
+    "build": "npm run build-sass && webpack && npm run copy-res",
     "webpack": "webpack --config webpack.config.dev.js",
     "build-sass": "node-sass --include-path scss ./src/index.scss ./build/css/index.css --output-style compressed",
     "copy-res": "cp -a ./src/res/. ./build/res/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CarpeSwag/Team-Nahual-Website.git"
+    "url": "git+https://github.com/CarpeSwag/banjoball-elo-site.git"
   },
   "keywords": [
     "inferno",
