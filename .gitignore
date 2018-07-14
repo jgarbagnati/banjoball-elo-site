@@ -4,3 +4,7 @@ npm-debug.log
 # Build files
 
 build/*
+
+# Temporary, regretable non-backend DB stuff
+
+src/res/db/*

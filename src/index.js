@@ -10,19 +10,32 @@ export default class App extends Component {
 		super(props);
 		
 		this.state = {
-			loading: true
+			loading: true,
+			db: null
 		};
 		
 		this.update = this.update.bind(this);
+		this.onDB = this.onDB.bind(this);
+	}
+	
+	componentDidMount() {
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', './res/db/elo.db', true);
+		xhr.responseType = 'arraybuffer';
+		xhr.onload = this.onDB;
 	}
 	
 	update() {
 		window.requestAnimationFrame(() => this.forceUpdate());
 	}
 	
-	componentDidMount() {
+	onDB(e) {
+		let dbpath = new Uint8Array(this.response);
+		let db = new SQL.Database(dbpath);
+		
 		this.setState({
-			loading: false
+			loading: false,
+			db: db
 		});
 	}
 	
@@ -38,7 +51,7 @@ export default class App extends Component {
 					<NavbarTop update={this.update} />
 					<div id="main-cntr">
 						<Switch>
-							<Route exact path="/" render={() =><Home />} />
+							<Route exact path="/" render={() =><Home db={this.state.db} />} />
 							<Route path="/season-1" render={() =><Season season={1} />} />
 						</Switch>
 					</div>
