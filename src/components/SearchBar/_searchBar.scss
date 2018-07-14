@@ -32,7 +32,7 @@
 		outline: solid 1px lighten($navbar-secondary-color, 25%);
 	}
 	
-	&:active {
+	&:active, &.down {
 		filter: brightness(50%);
 	}
 }
