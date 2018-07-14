@@ -12,13 +12,13 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 		padding-bottom: 5px;
 	}
 
-	.player-table-cntr-inner {
+	#player-table-cntr-inner {
 		position: relative;
 		font-family: $secondary-font;
 		font-size: 16px;
 		
 		.player-table-row,
-		.player-table-header {
+		#player-table-header {
 			width: calc(100% - 20px);
 			height: 20px;
 			padding: 10px;
@@ -48,15 +48,27 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 			}
 		}
 		
+		&.sticky {
+			padding-top: 34px;
+			
+			#player-table-header {
+				position: absolute;
+			}
+		}
+		
 		.player-table-row {
 			background-color: $table-color-primary;
 			
 			&.alt {
 				background-color: $table-color-secondary;
 			}
+			
+			.name {
+				text-align: left;
+			}
 		}
 		
-		.player-table-header {
+		#player-table-header {
 			font-family: $primary-font;
 			background-color: $primary-color-layout;
 			border-bottom: solid 2px $outline-color;

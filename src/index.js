@@ -44,7 +44,6 @@ export default class App extends Component {
 		while(query.step()) {
 			this.state.players.push(query.getAsObject());
 		}
-		console.log(this.state.players[0]);
 		
 		this.setState({
 			loading: false,
