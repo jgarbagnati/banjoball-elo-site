@@ -78,6 +78,9 @@ $main-cntr-min-height: calc(100vh - 100px);
 	}
 }
 
+// Loading
+@import "components/Loading/loading";
+
 // Minor Components - Can overwrite these styles
 @import "components/SearchBar/searchBar";
 
