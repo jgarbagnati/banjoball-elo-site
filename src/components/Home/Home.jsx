@@ -7,7 +7,6 @@ export default class Home extends Component {
 		super(props);
 		
 		this.state = {
-			height: 0,
 			searchValue: '',
 			currSeason: 0
 		}
@@ -16,11 +15,7 @@ export default class Home extends Component {
 	}
 	
 	componentDidMount() {
-		let leftHeight = document.getElementById('left-cntr').clientHeight;
-		let rightHeight = document.getElementById('right-cntr').clientHeight;
-		this.setState({
-			height: Math.max(leftHeight, rightHeight)
-		});
+		this.setState({});
 	}
 	
 	updateSearchBarValue(val) {
@@ -37,17 +32,24 @@ export default class Home extends Component {
 	}
 	
 	render() {
-		let height = {
-			height: this.state.height
+		let height = window.innerHeight - 100;
+		let left = document.getElementById('left-cntr');
+		let right = document.getElementById('right-cntr')
+		if (left !== null && right !== null) {
+			height: Math.max(left.clientHeight, right.clientHeight)
+		}
+		
+		let heightStyle = {
+			minHeight: height
 		};
 		return (
 			<div id="home-cntr">
-				<div id="left-cntr" style={height}>
+				<div id="left-cntr" style={heightStyle}>
 					<div className="header-cntr">
 						Warcraft 3 Banjoball Elo, Season {this.state.currSeason + 1}
 					</div>
 				</div>
-				<div id="right-cntr" style={height}>
+				<div id="right-cntr" style={heightStyle}>
 					<div className="search-cntr">
 						<SearchBar updateValue={this.updateSearchBarValue}
 							value={this.state.value} onSearch={this.search} />
