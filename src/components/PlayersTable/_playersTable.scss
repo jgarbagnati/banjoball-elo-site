@@ -1,5 +1,8 @@
 $table-color-primary: #efefef;
 $table-color-secondary: lighten($navbar-secondary-color, 50%);
+$winloss-loss-color: #f37373;
+$winloss-win-color: #7378f3;
+$winloss-font-color: lighten($navbar-secondary-color, 50%);
 
 #player-table-cntr-outer {
 	width: calc(100% - 40px);
@@ -16,6 +19,7 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 		position: relative;
 		font-family: $secondary-font;
 		font-size: 16px;
+		padding-top: 34px;
 		
 		.player-table-row,
 		#player-table-header {
@@ -35,7 +39,7 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.name {
-				width: 125px;
+				width: 115px;
 				text-align: left;
 				white-space: nowrap;
 				text-overflow: ellipsis;
@@ -48,16 +52,60 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.winloss {
-				width: 124px;
+				width: 134px;
 				margin: 0;
 			}
 		}
 		
-		&.sticky {
-			padding-top: 34px;
-			
-			#player-table-header {
-				position: absolute;
+		.player-table-row {
+			.winloss {
+				position: relative;
+				vertical-align: top;
+				width: 124px;
+				margin: 0;
+				font-size: 12px;
+				font-weight: bold;
+				
+				.winloss-bar {
+					position: absolute;
+					width: calc(100% - 40px);
+					height: 24px;
+					top: -3px;
+					background-color: $winloss-loss-color;
+					border: solid 1px $outline-color;
+					border-radius: 3px;
+					overflow: hidden;
+					color: $winloss-font-color;
+					
+					.txt {
+						position: absolute;
+						font-size: 12px;
+						right: 4px;
+						top: 5px;
+						text-align: right;
+					}
+					
+					.win-bar {
+						position: absolute;
+						width: 50%;
+						height: 100%;
+						overflow: hidden;
+						top: 0px;
+						background-color: $winloss-win-color;
+						
+						.txt {
+							left: 4px;
+							right: 0;
+							text-align: left;
+						}
+					}
+				}
+				
+				.winloss-rate {
+					position: absolute;
+					right: 0;
+					top: 3px;
+				}
 			}
 		}
 		
@@ -70,6 +118,8 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 		}
 		
 		#player-table-header {
+			position: absolute;
+			top: 0;
 			font-family: $primary-font;
 			background-color: $primary-color-layout;
 			border-bottom: solid 2px $outline-color;

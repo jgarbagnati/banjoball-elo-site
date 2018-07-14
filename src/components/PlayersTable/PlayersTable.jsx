@@ -18,7 +18,6 @@ export default class PlayersTable extends Component {
 		super(props);
 		
 		this.state = {
-			isOff: false,
 			offset: 0
 		}
 		
@@ -38,8 +37,7 @@ export default class PlayersTable extends Component {
 		let bnd = cntr.getBoundingClientRect();
 		let offset = Math.min(bnd.height-14, Math.max(0, -bnd.top));
 		this.setState({
-			offset: offset,
-			isOff: bnd.top < 0
+			offset: offset
 		});
 	}
 	
@@ -60,21 +58,20 @@ export default class PlayersTable extends Component {
 	}
 	
 	render() {
-		let isStickied = (this.state.isOff)? 'sticky': null;
 		let sticky = {
 			top: this.state.offset
 		};
 		return (
 			<div id="player-table-cntr-outer">
 				<div className='player-table-title'>Leaderboard</div>
-				<div id='player-table-cntr-inner' className={isStickied}>
+				<div id='player-table-cntr-inner'>
+					{this.displayLeaderboardRows()}
 					<div id='player-table-header' style={sticky}>
 						<div className='rank'> Rank </div>
 						<div className='name'> Name </div>
 						<div className='elo'> Elo </div>
 						<div className='winloss'> Win/Loss </div>
 					</div>
-					{this.displayLeaderboardRows()}
 				</div>
 			</div>
 		);
