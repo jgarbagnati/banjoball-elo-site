@@ -15,10 +15,9 @@ export default class Home extends Component {
 		this.search = this.search.bind(this);
 	}
 	
-	onComponentDidMount() {
+	componentDidMount() {
 		let leftHeight = document.getElementById('left-cntr').clientHeight;
 		let rightHeight = document.getElementById('right-cntr').clientHeight;
-		console.log(leftHeight, rightHeight);
 		this.setState({
 			height: Math.max(leftHeight, rightHeight)
 		});

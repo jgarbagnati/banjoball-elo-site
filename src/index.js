@@ -20,8 +20,14 @@ export default class App extends Component {
 		window.requestAnimationFrame(() => this.forceUpdate());
 	}
 	
+	componentDidMount() {
+		this.setState({
+			loading: false
+		});
+	}
+	
 	render() {
-		let loadingClass = (this.state.loading)? "active": "";
+		let loading = (this.state.loading)? <Loading />: null;
 		return (
 			<HashRouter>
 				<div id='inferno-root'>
@@ -36,7 +42,7 @@ export default class App extends Component {
 							<Route path="/season-1" render={() =><Season season={1} />} />
 						</Switch>
 					</div>
-					<Loading />
+					{loading}
 				</div>
 			</HashRouter>
 		);
