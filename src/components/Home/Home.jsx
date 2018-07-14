@@ -15,6 +15,15 @@ export default class Home extends Component {
 		this.search = this.search.bind(this);
 	}
 	
+	onComponentDidMount() {
+		let leftHeight = document.getElementById('left-cntr').clientHeight;
+		let rightHeight = document.getElementById('right-cntr').clientHeight;
+		console.log(leftHeight, rightHeight);
+		this.setState({
+			height: Math.max(leftHeight, rightHeight)
+		});
+	}
+	
 	updateSearchBarValue(val) {
 		this.state.searchValue = val;
 	}
@@ -29,14 +38,17 @@ export default class Home extends Component {
 	}
 	
 	render() {
+		let height = {
+			height: this.state.height
+		};
 		return (
 			<div id="home-cntr">
-				<div className="left-cntr">
+				<div id="left-cntr" style={height}>
 					<div className="header-cntr">
 						Warcraft 3 Banjoball Elo, Season {this.state.currSeason + 1}
 					</div>
 				</div>
-				<div className="right-cntr">
+				<div id="right-cntr" style={height}>
 					<div className="search-cntr">
 						<SearchBar updateValue={this.updateSearchBarValue}
 							value={this.state.value} onSearch={this.search} />
