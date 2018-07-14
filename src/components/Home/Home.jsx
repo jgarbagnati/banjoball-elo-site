@@ -55,7 +55,9 @@ export default class Home extends Component {
 						<SearchBar updateValue={this.updateSearchBarValue}
 							value={this.state.value} onSearch={this.search} />
 					</div>
-					<PlayersTable db={this.props.db} />
+					<PlayersTable db={this.props.db}
+						players={this.props.players}
+						matches={this.props.matches} />
 				</div>
 			</div>
 		);

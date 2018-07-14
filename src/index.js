@@ -10,7 +10,10 @@ export default class App extends Component {
 		super(props);
 		
 		this.state = {
+			lastXhr: null,
 			loading: true,
+			players: [],
+			matches: [],
 			db: null
 		};
 		
@@ -19,13 +22,14 @@ export default class App extends Component {
 	}
 	
 	componentDidMount() {
-		window.requestAnimationFrame(() => {
+		setTimeout(() => {
 			let xhr = new XMLHttpRequest();
 			xhr.open('GET', './res/db/elo.db', true);
 			xhr.responseType = 'arraybuffer';
 			xhr.onload = this.onDB;
+			this.state.lastXhr = xhr;
 			xhr.send();
-		});
+		}, 100);
 	}
 	
 	update() {
@@ -33,8 +37,14 @@ export default class App extends Component {
 	}
 	
 	onDB(e) {
-		let dbpath = new Uint8Array(this.response);
+		let dbpath = new Uint8Array(this.state.lastXhr.response);
 		let db = new SQL.Database(dbpath);
+		
+		let query = db.prepare("SELECT name,elo,win,loss FROM players WHERE win > 0 ORDER BY elo desc");
+		while(query.step()) {
+			this.state.players.push(query.getAsObject());
+		}
+		console.log(this.state.players[0]);
 		
 		this.setState({
 			loading: false,
@@ -54,7 +64,10 @@ export default class App extends Component {
 					<NavbarTop update={this.update} />
 					<div id="main-cntr">
 						<Switch>
-							<Route exact path="/" render={() =><Home db={this.state.db} />} />
+							<Route exact path="/" render={() =>
+								<Home players={this.state.players}
+									matches={this.state.matches}
+									db={this.state.db} />} />
 							<Route path="/season-1" render={() =><Season season={1} />} />
 						</Switch>
 					</div>
@@ -65,7 +78,9 @@ export default class App extends Component {
 	}
 }
 
-render(
-	<App />,
-	document.getElementById('root')
-);
+document.addEventListener("DOMContentLoaded", function() {
+	render(
+		<App />,
+		document.getElementById('root')
+	);
+});
