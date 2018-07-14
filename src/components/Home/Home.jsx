@@ -1,6 +1,7 @@
 import {Component} from 'inferno';
 import {Link, NavLink} from 'inferno-router';
 import SearchBar from '../SearchBar/SearchBar';
+import PlayersTable from '../PlayersTable/PlayersTable';
 
 export default class Home extends Component {
 	constructor(props) {
@@ -54,6 +55,7 @@ export default class Home extends Component {
 						<SearchBar updateValue={this.updateSearchBarValue}
 							value={this.state.value} onSearch={this.search} />
 					</div>
+					<PlayersTable db={this.props.db} />
 				</div>
 			</div>
 		);

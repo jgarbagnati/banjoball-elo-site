@@ -1,0 +1,56 @@
+$table-color-primary: #efefef;
+$table-color-secondary: lighten($navbar-secondary-color, 50%);
+
+#player-table-cntr-outer {
+	width: calc(100% - 40px);
+	padding: 20px;
+
+	.player-table-header {
+		width: 100%;
+		font-family: $primary-font;
+		font-size: 30px;
+		padding-bottom: 5px;
+		border-bottom: solid 2px $outline-color;
+	}
+	
+	.player-table-cntr-inner {
+		font-family: $secondary-font;
+		font-size: 16px;
+		
+		.player-table-row {
+			width: calc(100% - 20px);
+			height: 20px;
+			padding: 10px;
+			background-color: $table-color-primary;
+			overflow: hidden;
+			
+			&.alt {
+				background-color: $table-color-secondary;
+			}
+			
+			.rank, .name, .elo, .winloss {
+				display: inline-block;
+				text-align: center;
+				margin-right: 20px;
+			}
+			
+			.rank {
+				width: 20px;
+			}
+			
+			.name {
+				width: 135px;
+				text-align: left;
+			}
+			
+			.elo {
+				width: 40px;
+			}
+			
+			.winloss {
+				width: 75px;
+				margin: 0;
+			}
+		}
+	}
+}
