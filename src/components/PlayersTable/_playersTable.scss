@@ -35,8 +35,11 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.name {
-				width: 135px;
+				width: 125px;
 				text-align: left;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
 			}
 			
 			.elo {
@@ -44,7 +47,7 @@ $table-color-secondary: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.winloss {
-				width: 110px;
+				width: 124px;
 				margin: 0;
 			}
 		}
