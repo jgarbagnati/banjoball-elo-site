@@ -25,6 +25,7 @@ export default class PlayersTable extends Component {
 	}
 	
 	componentDidMount() {
+		this.props.updateHeights();
 		root.addEventListener('scroll', this.onScroll);
 	}
 	

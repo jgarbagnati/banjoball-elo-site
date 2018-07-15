@@ -13,9 +13,13 @@ export default class Home extends Component {
 			currSeason: 0
 		}
 		
-		
 		this.updateSearchBarValue = this.updateSearchBarValue.bind(this);
+		this.updateHeights = this.updateHeights.bind(this);
 		this.search = this.search.bind(this);
+	}
+	
+	updateHeights() {
+		this.setState({});
 	}
 	
 	componentDidMount() {
@@ -40,7 +44,7 @@ export default class Home extends Component {
 		let left = document.getElementById('left-cntr');
 		let right = document.getElementById('right-cntr')
 		if (left !== null && right !== null) {
-			height: Math.max(left.clientHeight, right.clientHeight)
+			height = Math.max(left.clientHeight, right.clientHeight);
 		}
 		
 		let heightStyle = {
@@ -52,7 +56,8 @@ export default class Home extends Component {
 				header={"Current Matches"}
 				getPlayerById={this.props.getPlayerById}
 				players={this.props.players}
-				matches={this.props.ongoing} />);
+				matches={this.props.ongoing}
+				updateHeights={this.updateHeights} />);
 		return (
 			<div id="home-cntr">
 				<div id="left-cntr" style={heightStyle}>
@@ -64,7 +69,8 @@ export default class Home extends Component {
 						header={"Match History"}
 						getPlayerById={this.props.getPlayerById}
 						players={this.props.players}
-						matches={this.props.matches} />
+						matches={this.props.matches}
+						updateHeights={this.updateHeights} />
 				</div>
 				<div id="right-cntr" style={heightStyle}>
 					<div className="search-cntr">
@@ -73,7 +79,8 @@ export default class Home extends Component {
 					</div>
 					<PlayersTable db={this.props.db}
 						players={this.props.players}
-						matches={this.props.matches} />
+						matches={this.props.matches}
+						updateHeights={this.updateHeights} />
 				</div>
 			</div>
 		);

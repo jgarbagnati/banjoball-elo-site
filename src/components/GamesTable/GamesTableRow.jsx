@@ -18,6 +18,10 @@ export default class GamesTableRow extends Component {
 		}
 	}
 	
+	shouldComponentUpdate(nextProps, nextState, context) {
+		return false;
+	}
+	
 	render() {
 		
 		return (
