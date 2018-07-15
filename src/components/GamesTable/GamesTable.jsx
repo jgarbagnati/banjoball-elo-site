@@ -1,6 +1,6 @@
 import {Component} from 'inferno';
 import {Link, NavLink} from 'inferno-router';
-import PlayersTableRow from './PlayersTableRow';
+import GamesTableRow from './GamesTableRow';
 
 function getPosition(element) {
     let yPosition = 0;
@@ -13,7 +13,7 @@ function getPosition(element) {
     return yPosition;
 }
 
-export default class PlayersTable extends Component {
+export default class CurrentGamesTable extends Component {
 	constructor(props) {
 		super(props);
 		
@@ -33,7 +33,7 @@ export default class PlayersTable extends Component {
 	}
 	
 	onScroll() {
-		let cntr = document.getElementById("player-table-cntr-inner");
+		let cntr = document.getElementById(this.props.id + '-inner');
 		let bnd = cntr.getBoundingClientRect();
 		let offset = Math.min(bnd.height-74, Math.max(0, -bnd.top));
 		this.setState({
@@ -41,17 +41,15 @@ export default class PlayersTable extends Component {
 		});
 	}
 	
-	displayLeaderboardRows() {
+	displayMatchRows() {
 		let rows = [];
-		for (let i = 0; i < this.props.players.length; ++i) {
-			let rank = i+1;
-			let player = this.props.players[i];
-			let name = player.name;
-			let elo = player.elo;
-			let wins = player.win;
-			let loss = player.loss;
-			rows.push(<PlayersTableRow rank={rank} name={name}
-				elo={elo} wins={wins} loss={loss} alt={rank%2==0}/>);
+		for (let i = 0; i < this.props.matches.length; ++i) {
+			let game = this.props.matches[i];
+			let match = game.ID + 1;
+			let p1 = this.props.
+			
+			rows.push(<GamesTableRow rank={rank} name={name}
+				elo={elo} wins={wins} loss={loss} alt={rank%2==0} />);
 		}
 		
 		return rows;
@@ -61,17 +59,20 @@ export default class PlayersTable extends Component {
 		let sticky = {
 			top: this.state.offset
 		};
+		let outer = this.props.id + '-outer';
+		let inner = this.props.id + '-inner';
+		
 		return (
-			<div id="player-table-cntr-outer">
-				<div className='player-table-title'>Leaderboard</div>
-				<div id='player-table-cntr-inner'>
-					{this.displayLeaderboardRows()}
+			<div id={outer}>
+				<div className='cntr-title'>{this.props.header}</div>
+				<div id={inner}>
 					<div id='player-table-header' style={sticky}>
-						<div className='rank'> Rank </div>
-						<div className='name'> Name </div>
-						<div className='elo'> Elo </div>
-						<div className='winloss'> Win/Loss </div>
+						<div className='match'> Match </div>
+						<div className='Team 1'> Team 1 </div>
+						<div className='Scores'> Scores </div>
+						<div className='Team 2'> Team 2 </div>
 					</div>
+					
 				</div>
 			</div>
 		);

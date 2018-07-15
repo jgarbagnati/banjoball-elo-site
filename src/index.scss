@@ -85,6 +85,7 @@ $main-cntr-min-height: calc(100vh - 100px);
 // Minor Components - Can overwrite these styles
 @import "components/SearchBar/searchBar";
 @import "components/PlayersTable/playersTable";
+@import "components/GamesTable/gamesTable";
 
 // Major Components - Will overwrite other styles
 @import "components/NavbarTop/navbarTop";

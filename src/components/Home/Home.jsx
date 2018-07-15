@@ -1,16 +1,27 @@
 import {Component} from 'inferno';
 import {Link, NavLink} from 'inferno-router';
 import SearchBar from '../SearchBar/SearchBar';
-import PlayersTable from '../PlayersTable/PlayersTable';
+import PlayersTable from '../PlayersTable/PlayersTable';		
+import GamesTable from '../GamesTable/GamesTable';
 
 export default class Home extends Component {
 	constructor(props) {
 		super(props);
 		
+		
+		let currMatches = (this.props.ongoing.length == 0)? null: 			
+			(<GamesTable id={'current-games-table-cntr'} 
+				header={"Current Matches"}
+				getPlayerById={this.getPlayerById}
+				players={this.props.players}
+				matches={this.props.ongoing} />);
 		this.state = {
 			searchValue: '',
-			currSeason: 0
+			currSeason: 0,
+			currMatches: currMatches
 		}
+		
+		
 		this.updateSearchBarValue = this.updateSearchBarValue.bind(this);
 		this.search = this.search.bind(this);
 	}
@@ -49,6 +60,11 @@ export default class Home extends Component {
 					<div className="header-cntr">
 						Warcraft 3 Banjoball Elo, Season {this.state.currSeason + 1}
 					</div>
+					{this.state.currMatches}
+					<GamesTable id={'games-table-cntr'} header={"Match History"}
+						getPlayerById={this.getPlayerById}
+						players={this.props.players}
+						matches={this.props.matches} />
 				</div>
 				<div id="right-cntr" style={heightStyle}>
 					<div className="search-cntr">

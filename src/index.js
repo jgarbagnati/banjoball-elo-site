@@ -13,12 +13,15 @@ export default class App extends Component {
 			lastXhr: null,
 			loading: true,
 			players: [],
+			playerMap: {},
+			ongoing: [],
 			matches: [],
 			db: null
 		};
 		
 		this.update = this.update.bind(this);
 		this.onDB = this.onDB.bind(this);
+		this.getPlayerById = this.getPlayerById.bind(this);
 	}
 	
 	componentDidMount() {
@@ -40,15 +43,32 @@ export default class App extends Component {
 		let dbpath = new Uint8Array(this.state.lastXhr.response);
 		let db = new SQL.Database(dbpath);
 		
-		let query = db.prepare("SELECT name,elo,win,loss FROM players WHERE win + loss > 0 ORDER BY elo desc");
+		let query = db.prepare("SELECT ID,name,elo,win,loss FROM players WHERE win + loss > 0 ORDER BY elo desc");
 		while(query.step()) {
-			this.state.players.push(query.getAsObject());
+			let obj = query.getAsObject();
+			this.state.players.push(obj);
+			this.state.playerMap[obj.ID] = obj;
+			obj.matches = [];
+		}
+		
+		query = db.prepare("SELECT ID,p1,p2,p3,p4,s1,s2,p5,p6,p7,p8 FROM games WHERE ID >= 0 ORDER BY ID desc;");
+		while(query.step()) {
+			let obj = query.getAsObject();
+			if (obj.s1 == null || obj.s2 == null) {
+				this.state.ongoing.push(obj);
+			} else {
+				this.state.matches.push(obj);
+			}
 		}
 		
 		this.setState({
 			loading: false,
 			db: db
 		});
+	}
+	
+	getPlayerById(id) {
+		return this.state.playerMap[id];
 	}
 	
 	render() {
@@ -64,8 +84,10 @@ export default class App extends Component {
 					<div id="main-cntr">
 						<Switch>
 							<Route exact path="/" render={() =>
-								<Home players={this.state.players}
+								<Home getPlayerById={this.getPlayerById}
+									players={this.state.players}
 									matches={this.state.matches}
+									ongoing={this.state.ongoing}
 									db={this.state.db} />} />
 							<Route path="/season-1" render={() =><Season season={1} />} />
 						</Switch>
