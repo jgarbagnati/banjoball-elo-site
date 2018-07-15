@@ -50,7 +50,7 @@ export default class Home extends Component {
 		let currMatches = (this.props.ongoing.length == 0)? null: 			
 			(<GamesTable id={'current-games-table-cntr'} 
 				header={"Current Matches"}
-				getPlayerById={this.getPlayerById}
+				getPlayerById={this.props.getPlayerById}
 				players={this.props.players}
 				matches={this.props.ongoing} />);
 		return (
@@ -60,7 +60,11 @@ export default class Home extends Component {
 						Warcraft 3 Banjoball Elo, Season {this.state.currSeason + 1}
 					</div>
 					{currMatches}
-					
+					<GamesTable id={'games-table-cntr'} 
+						header={"Match History"}
+						getPlayerById={this.props.getPlayerById}
+						players={this.props.players}
+						matches={this.props.matches} />
 				</div>
 				<div id="right-cntr" style={heightStyle}>
 					<div className="search-cntr">

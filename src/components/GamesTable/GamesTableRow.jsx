@@ -27,19 +27,19 @@ export default class GamesTableRow extends Component {
 					{this.props.match}
 				</div>
 				<div className='team1'>
-					{this.props.p1}
-					{this.props.p2}
-					{this.props.p3}
-					{this.props.p4}
+					<div className='player'>{this.props.p1}</div>
+					<div className='player'>{this.props.p2}</div>
+					<div className='player'>{this.props.p3}</div>
+					<div className='player'>{this.props.p4}</div>
 				</div>
 				<div className='scores'>
 					{this.state.scores}
 				</div>
 				<div className='team1'>
-					{this.props.p5}
-					{this.props.p6}
-					{this.props.p7}
-					{this.props.p8}
+					<div className='player'>{this.props.p5}</div>
+					<div className='player'>{this.props.p6}</div>
+					<div className='player'>{this.props.p7}</div>
+					<div className='player'>{this.props.p8}</div>
 				</div>
 			</div>
 		);

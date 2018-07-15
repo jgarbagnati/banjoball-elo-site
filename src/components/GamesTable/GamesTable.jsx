@@ -35,7 +35,7 @@ export default class CurrentGamesTable extends Component {
 	onScroll() {
 		let cntr = document.getElementById(this.props.id + '-inner');
 		let bnd = cntr.getBoundingClientRect();
-		let offset = Math.min(bnd.height-74, Math.max(0, -bnd.top));
+		let offset = Math.min(bnd.height-145, Math.max(0, -bnd.top));
 		this.setState({
 			offset: offset
 		});
@@ -45,11 +45,14 @@ export default class CurrentGamesTable extends Component {
 		let rows = [];
 		for (let i = 0; i < this.props.matches.length; ++i) {
 			let game = this.props.matches[i];
-			let match = game.ID + 1;
-			
-			rows.push(<GamesTableRow alt={i%2==1} match={match}
-				p1={game.p1} p2={game.p2} p3={game.p3} p4={game.p4}
-				p5={game.p5} p6={game.p6} p7={game.p7} p8={game.p8}
+			let players = [game.p1, game.p2, game.p3, game.p4,
+			               game.p5, game.p6, game.p7, game.p8];
+			for (let j = 0; j < players.length; ++j) {
+				players[j] = this.props.getPlayerById(players[j]).name;
+			}
+			rows.push(<GamesTableRow alt={i%2==1} match={game.ID}
+				p1={players[0]} p2={players[1]} p3={players[2]} p4={players[3]}
+				p5={players[4]} p6={players[5]} p7={players[6]} p8={players[7]}
 				s1={game.s1} s2={game.s2} />);
 		}
 		

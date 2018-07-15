@@ -18,7 +18,6 @@
 		
 		.table-row, .table-header {
 			width: calc(100% - 20px);
-			height: 19px;
 			padding: 10px;
 			padding-top: 11px;
 			overflow: hidden;
@@ -38,7 +37,15 @@
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
-				vertical-align: bottom;
+				vertical-align: middle;
+			
+				.player {
+					margin-bottom: 5px;
+					
+					&:last-child {
+						margin-bottom: 0px;
+					}
+				}
 			}
 			
 			.scores {
@@ -47,6 +54,7 @@
 		}
 		
 		.table-row {
+			height: 90px;
 			background-color: $table-color-primary;
 			
 			&.alt {
@@ -55,6 +63,7 @@
 		}
 		
 		.table-header {
+			height: 19px;
 			position: absolute;
 			top: 0;
 			font-family: $primary-font;

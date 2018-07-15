@@ -43,12 +43,14 @@ export default class App extends Component {
 		let dbpath = new Uint8Array(this.state.lastXhr.response);
 		let db = new SQL.Database(dbpath);
 		
-		let query = db.prepare("SELECT ID,name,elo,win,loss FROM players WHERE win + loss > 0 ORDER BY elo desc");
+		let query = db.prepare("SELECT ID,name,elo,win,loss FROM players ORDER BY elo desc");
 		while(query.step()) {
 			let obj = query.getAsObject();
-			this.state.players.push(obj);
 			this.state.playerMap[obj.ID] = obj;
 			obj.matches = [];
+			if (obj.win > 0 || obj.loss > 0) {
+				this.state.players.push(obj);
+			}
 		}
 		
 		query = db.prepare("SELECT ID,p1,p2,p3,p4,s1,s2,p5,p6,p7,p8 FROM games WHERE ID >= 0 ORDER BY ID desc;");
