@@ -37,7 +37,8 @@
 				background-size: cover;
 			}
 			
-			h1 {
+			&:after {
+				content: 'Loading content';
 				bottom: 0;
 				position: absolute;
 				margin: 0;
@@ -46,7 +47,24 @@
 				left: calc(50% - 120px);
 				color: #fff;
 				font-family: $primary-font;
+				font-size: 32px;
+				animation: loading-content-animation 1s linear infinite;
 			}
 		}
+	}
+}
+
+@keyframes loading-content-animation {
+	0% {
+		content: 'Loading content';
+	}
+	25% {
+		content: 'Loading content.';
+	}
+	50% {
+		content: 'Loading content..';
+	}
+	100% {
+		content: 'Loading content...';
 	}
 }
