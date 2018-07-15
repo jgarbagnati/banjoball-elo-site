@@ -35,7 +35,7 @@ export default class PlayersTable extends Component {
 	onScroll() {
 		let cntr = document.getElementById("player-table-cntr-inner");
 		let bnd = cntr.getBoundingClientRect();
-		let offset = Math.min(bnd.height-14, Math.max(0, -bnd.top));
+		let offset = Math.min(bnd.height-74, Math.max(0, -bnd.top));
 		this.setState({
 			offset: offset
 		});
