@@ -4,44 +4,42 @@ import {Link, NavLink} from 'inferno-router';
 export default class GamesTableRow extends Component {
 	constructor(props) {
 		super(props);
+		
+		let cntrClass = 'table-row' + ((this.props.alt)? ' alt': '');
+		
+		let scores = this.props.s1 + ' - ' + this.props.s2
+		if (this.props.s1 == null || this.props.s2 == null) {
+			scores = "vs"
+		}
+		
+		this.state = {
+			cntrClass: cntrClass,
+			scores: scores
+		}
 	}
 	
 	render() {
-		let cntrClass = 'player-table-row' + ((this.props.alt)? ' alt': '');
-		let games = this.props.wins + this.props.loss;
-		let gamesSafe = Math.max(1, games);
-		let winrate = (Math.floor((this.props.wins / gamesSafe) * 1000) / 10).toFixed(1);
-		let winbarStyle = {
-			width: winrate + '%'
-		};
 		
-		let wins = (this.props.wins > 0)? 
-			(<span className="txt left">  {this.props.wins + "W"} </span>): null;
-		let loss = (this.props.loss > 0)? 
-			(<span className="txt right"> {this.props.loss + "L"} </span>): null;
 		return (
-			<div className={cntrClass}>
-				<div className='rank'>
-					{this.props.rank}
+			<div className={this.state.cntrClass}>
+				
+				<div className='match'>
+					{this.props.match}
 				</div>
-				<div className='name'>
-					{this.props.name}
+				<div className='team1'>
+					{this.props.p1}
+					{this.props.p2}
+					{this.props.p3}
+					{this.props.p4}
 				</div>
-				<div className='elo'>
-					{this.props.elo}
+				<div className='scores'>
+					{this.state.scores}
 				</div>
-				<div className='winloss'>
-					<div className='winloss-bar'>
-						<div className='win-bar' style={winbarStyle}>
-						</div>
-						<div className='txt-cntr'>
-							{wins}
-							{loss}
-						</div>
-					</div>
-					<div className='winloss-rate'>
-						{winrate + "%"}
-					</div>
+				<div className='team1'>
+					{this.props.p5}
+					{this.props.p6}
+					{this.props.p7}
+					{this.props.p8}
 				</div>
 			</div>
 		);

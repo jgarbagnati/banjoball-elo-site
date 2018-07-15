@@ -46,10 +46,11 @@ export default class CurrentGamesTable extends Component {
 		for (let i = 0; i < this.props.matches.length; ++i) {
 			let game = this.props.matches[i];
 			let match = game.ID + 1;
-			let p1 = this.props.
 			
-			rows.push(<GamesTableRow rank={rank} name={name}
-				elo={elo} wins={wins} loss={loss} alt={rank%2==0} />);
+			rows.push(<GamesTableRow alt={i%2==1} match={match}
+				p1={game.p1} p2={game.p2} p3={game.p3} p4={game.p4}
+				p5={game.p5} p6={game.p6} p7={game.p7} p8={game.p8}
+				s1={game.s1} s2={game.s2} />);
 		}
 		
 		return rows;
@@ -66,13 +67,13 @@ export default class CurrentGamesTable extends Component {
 			<div id={outer}>
 				<div className='cntr-title'>{this.props.header}</div>
 				<div id={inner}>
-					<div id='player-table-header' style={sticky}>
+					<div className='table-header' style={sticky}>
 						<div className='match'> Match </div>
-						<div className='Team 1'> Team 1 </div>
-						<div className='Scores'> Scores </div>
-						<div className='Team 2'> Team 2 </div>
+						<div className='team1'> Team 1 </div>
+						<div className='scores'> Scores </div>
+						<div className='team2'> Team 2 </div>
 					</div>
-					
+					{this.displayMatchRows()}
 				</div>
 			</div>
 		);

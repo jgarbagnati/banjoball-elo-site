@@ -8,17 +8,9 @@ export default class Home extends Component {
 	constructor(props) {
 		super(props);
 		
-		
-		let currMatches = (this.props.ongoing.length == 0)? null: 			
-			(<GamesTable id={'current-games-table-cntr'} 
-				header={"Current Matches"}
-				getPlayerById={this.getPlayerById}
-				players={this.props.players}
-				matches={this.props.ongoing} />);
 		this.state = {
 			searchValue: '',
-			currSeason: 0,
-			currMatches: currMatches
+			currSeason: 0
 		}
 		
 		
@@ -54,17 +46,21 @@ export default class Home extends Component {
 		let heightStyle = {
 			minHeight: height
 		};
+		
+		let currMatches = (this.props.ongoing.length == 0)? null: 			
+			(<GamesTable id={'current-games-table-cntr'} 
+				header={"Current Matches"}
+				getPlayerById={this.getPlayerById}
+				players={this.props.players}
+				matches={this.props.ongoing} />);
 		return (
 			<div id="home-cntr">
 				<div id="left-cntr" style={heightStyle}>
 					<div className="header-cntr">
 						Warcraft 3 Banjoball Elo, Season {this.state.currSeason + 1}
 					</div>
-					{this.state.currMatches}
-					<GamesTable id={'games-table-cntr'} header={"Match History"}
-						getPlayerById={this.getPlayerById}
-						players={this.props.players}
-						matches={this.props.matches} />
+					{currMatches}
+					
 				</div>
 				<div id="right-cntr" style={heightStyle}>
 					<div className="search-cntr">
