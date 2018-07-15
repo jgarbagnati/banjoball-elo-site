@@ -4,9 +4,6 @@ import {Link, NavLink} from 'inferno-router';
 export default class PlayersTableRow extends Component {
 	constructor(props) {
 		super(props);
-	}
-	
-	render() {
 		let cntrClass = 'player-table-row' + ((this.props.alt)? ' alt': '');
 		let games = this.props.wins + this.props.loss;
 		let gamesSafe = Math.max(1, games);
@@ -19,8 +16,23 @@ export default class PlayersTableRow extends Component {
 			(<span className="txt left">  {this.props.wins + "W"} </span>): null;
 		let loss = (this.props.loss > 0)? 
 			(<span className="txt right"> {this.props.loss + "L"} </span>): null;
+		
+		this.state = {
+			cntrClass: cntrClass,
+			wins: wins,
+			loss: loss,
+			winrate: winrate,
+			winbarStyle: winbarStyle
+		}
+	}
+	
+	shouldComponentUpdate(nextProps, nextState, context) {
+		return false;
+	}
+	
+	render() {
 		return (
-			<div className={cntrClass}>
+			<div className={this.state.cntrClass}>
 				<div className='rank'>
 					{this.props.rank}
 				</div>
@@ -32,15 +44,15 @@ export default class PlayersTableRow extends Component {
 				</div>
 				<div className='winloss'>
 					<div className='winloss-bar'>
-						<div className='win-bar' style={winbarStyle}>
+						<div className='win-bar' style={this.state.winbarStyle}>
 						</div>
 						<div className='txt-cntr'>
-							{wins}
-							{loss}
+							{this.state.wins}
+							{this.state.loss}
 						</div>
 					</div>
 					<div className='winloss-rate'>
-						{winrate + "%"}
+						{this.state.winrate + "%"}
 					</div>
 				</div>
 			</div>
