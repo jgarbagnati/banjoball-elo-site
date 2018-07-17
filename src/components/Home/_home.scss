@@ -32,19 +32,20 @@
 		display: inline-block;
 		vertical-align: top;
 		position: relative;
-		margin-top: 62px;
 		min-height: $main-cntr-min-height;
 	}
 	
 	#left-cntr {
 		width: 650px;
 		overflow-x: hidden;
+		margin-top: 0px;
 	}
 	
 	#right-cntr {
-		width: 449px;
-		border-left: 1px solid $outline-color;
+		width: 100%;
+		border-bottom: 1px solid $outline-color;
 		overflow-x: hidden;
+		margin-top: 62px;
 	}
 }
 
@@ -63,6 +64,14 @@
 		
 		#left-cntr, #right-cntr {
 			margin-top: 0px;
+		}
+		
+		#right-cntr {
+			position: absolute;
+			right: 0;
+			width: 449px;
+			border-bottom: none;
+			border-left: 1px solid $outline-color;
 		}
 	}
 }

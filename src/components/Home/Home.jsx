@@ -4,13 +4,16 @@ import SearchBar from '../SearchBar/SearchBar';
 import PlayersTable from '../PlayersTable/PlayersTable';		
 import GamesTable from '../GamesTable/GamesTable';
 
+const MAIN_CNTR_BREAKPOINT = 1240;
+
 export default class Home extends Component {
 	constructor(props) {
 		super(props);
 		
 		this.state = {
 			searchValue: '',
-			currSeason: 0
+			currSeason: 0,
+			height: window.innerHeight - 161
 		}
 		
 		this.updateSearchBarValue = this.updateSearchBarValue.bind(this);
@@ -19,15 +22,30 @@ export default class Home extends Component {
 	}
 	
 	updateHeights() {
-		this.setState({});
+		let height = 0;
+		if (window.innerWidth > MAIN_CNTR_BREAKPOINT) {
+			let left = document.getElementById('left-cntr');
+			let right = document.getElementById('right-cntr');
+			if (left !== null && right !== null) {
+				height = Math.max(left.clientHeight, right.clientHeight);
+			} else {
+				height = window.innerHeight - 161;
+			}
+		}
+		
+		this.setState({
+			height: height
+		});
 	}
 	
 	componentDidMount() {
 		this.setState({});
+		window.addEventListener("resize", this.updateHeights);
 	}
 	
 	updateSearchBarValue(val) {
 		this.state.searchValue = val;
+		window.removeEventListener("resize", this.updateHeights);
 	}
 	
 	search() {
@@ -40,15 +58,8 @@ export default class Home extends Component {
 	}
 	
 	render() {
-		let height = window.innerHeight - 161;
-		let left = document.getElementById('left-cntr');
-		let right = document.getElementById('right-cntr')
-		if (left !== null && right !== null) {
-			height = Math.max(left.clientHeight, right.clientHeight);
-		}
-		
 		let heightStyle = {
-			minHeight: height
+			minHeight: this.state.height
 		};
 		
 		let currMatches = (this.props.ongoing.length == 0)? null: 			
@@ -69,17 +80,17 @@ export default class Home extends Component {
 							value={this.state.value} onSearch={this.search} />
 					</div>
 				</div>
+				<div id="right-cntr" style={heightStyle}>
+					<PlayersTable db={this.props.db}
+						players={this.props.players}
+						matches={this.props.matches}
+						updateHeights={this.updateHeights} />
+				</div>
 				<div id="left-cntr" style={heightStyle}>
 					{currMatches}
 					<GamesTable id={'games-table-cntr'} 
 						header={"Match History"}
 						getPlayerById={this.props.getPlayerById}
-						players={this.props.players}
-						matches={this.props.matches}
-						updateHeights={this.updateHeights} />
-				</div>
-				<div id="right-cntr" style={heightStyle}>
-					<PlayersTable db={this.props.db}
 						players={this.props.players}
 						matches={this.props.matches}
 						updateHeights={this.updateHeights} />
