@@ -40,7 +40,7 @@ export default class Home extends Component {
 	}
 	
 	render() {
-		let height = window.innerHeight - 100;
+		let height = window.innerHeight - 161;
 		let left = document.getElementById('left-cntr');
 		let right = document.getElementById('right-cntr')
 		if (left !== null && right !== null) {
@@ -60,10 +60,16 @@ export default class Home extends Component {
 				updateHeights={this.updateHeights} />);
 		return (
 			<div id="home-cntr">
-				<div id="left-cntr" style={heightStyle}>
+				<div className="top-cntr">
 					<div className="header-cntr">
 						Warcraft 3 Banjoball Elo, Season {this.state.currSeason + 1}
 					</div>
+					<div className="search-cntr">
+						<SearchBar updateValue={this.updateSearchBarValue}
+							value={this.state.value} onSearch={this.search} />
+					</div>
+				</div>
+				<div id="left-cntr" style={heightStyle}>
 					{currMatches}
 					<GamesTable id={'games-table-cntr'} 
 						header={"Match History"}
@@ -73,10 +79,6 @@ export default class Home extends Component {
 						updateHeights={this.updateHeights} />
 				</div>
 				<div id="right-cntr" style={heightStyle}>
-					<div className="search-cntr">
-						<SearchBar updateValue={this.updateSearchBarValue}
-							value={this.state.value} onSearch={this.search} />
-					</div>
 					<PlayersTable db={this.props.db}
 						players={this.props.players}
 						matches={this.props.matches}

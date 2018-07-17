@@ -16,7 +16,7 @@ $secondary-color-font: #888888;
 $outline-color: #c1c1c1;
 
 // Positioning
-$main-cntr-min-height: calc(100vh - 100px);
+$main-cntr-min-height: calc(100vh - 161px);
 
 #root, #inferno-root {
 	position: absolute;
@@ -78,6 +78,9 @@ $main-cntr-min-height: calc(100vh - 100px);
 		min-height: $main-cntr-min-height;
 	}
 }
+
+// Mixins
+@import "components/mixins";
 
 // Loading
 @import "components/Loading/loading";
