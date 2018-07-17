@@ -14,7 +14,7 @@
 		
 		.icon {
 			position: absolute;
-			left: calc(50% - 550px);
+			left: 5%;
 			width: 277px;
 			height: 60px;
 			
@@ -29,8 +29,9 @@
 		background-color: $navbar-secondary-color;
 		
 		.nav-btns-cntr {
-			width: 1100px;
-			margin-left: calc(50% - 550px);
+			width: 90%;
+			margin-left: 5%;
+			
 			.nav-season-btn {
 				display: inline-block;
 				width: auto;
@@ -61,3 +62,17 @@
 		}
 	}
 }
+
+@include mq("main-cntr", min) {
+	#nav-bar-top {
+		.top-cntr .icon {
+			left: calc(50% - 550px);
+		}
+		
+		.bottom-cntr .nav-btns-cntr {
+			width: 1100px;
+			margin-left: calc(50% - 550px);
+		}
+	}
+}
+
