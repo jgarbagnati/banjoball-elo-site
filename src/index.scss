@@ -18,6 +18,9 @@ $outline-color: #c1c1c1;
 // Positioning
 $main-cntr-min-height: calc(100vh - 161px);
 
+// Mixins
+@import "components/mixins";
+
 #root, #inferno-root {
 	position: absolute;
 	top: 0;
@@ -35,7 +38,7 @@ $main-cntr-min-height: calc(100vh - 161px);
 		
 		.left-cntr, .right-cntr {
 			position: absolute;
-			width: calc(50% - 550px);
+			width: 50%;
 			height: 100%;
 		}
 		
@@ -73,14 +76,20 @@ $main-cntr-min-height: calc(100vh - 161px);
 	#main-cntr {
 		position: relative;
 		background-color: $primary-color-layout;
-		left: calc(50% - 550px);
-		width: 1100px;
+		width: 90%;
+		left: 5%;
 		min-height: $main-cntr-min-height;
 	}
 }
 
-// Mixins
-@import "components/mixins";
+@include mq("main-cntr", min) {
+	#inferno-root {
+		#main-cntr {
+			left: calc(50% - 550px);
+			width: 1100px;
+		}
+	}
+}
 
 // Loading
 @import "components/Loading/loading";
