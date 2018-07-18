@@ -30,11 +30,11 @@
 			}
 			
 			.match {
-				width: 50px;
+				width: calc(10% - 20px);
 			}
 			
 			.team1, .team2 {
-				width: 200px;
+				width: calc(35% - 20px);
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
@@ -50,7 +50,7 @@
 			}
 			
 			.scores {
-				width: 60px;
+				width: calc(20% - 20px);
 			}
 		}
 		
@@ -71,6 +71,10 @@
 			background-color: $primary-color-layout;
 			border-bottom: solid 2px $outline-color;
 			padding-bottom: 2px;
+			
+			.team1, .team2 {
+				vertical-align: top;
+			}
 		}
 	}
 }
@@ -83,6 +87,20 @@
 	#games-table-cntr-outer, #current-games-table-cntr-outer {
 		.cntr-title {
 			text-align: left;
+		}
+		
+		.table-row, .table-header {
+			.match {
+				width: 50px;
+			}
+			
+			.team1, .team2 {
+				width: 200px;
+			}
+			
+			.scores {
+				width: 60px;
+			}
 		}
 	}
 }
