@@ -60,7 +60,7 @@ export default class PlayersTable extends Component {
 	
 	render() {
 		let sticky = {
-			top: this.state.offset
+			transform: "translate(0px, " + this.state.offset + "px)"
 		};
 		return (
 			<div id="player-table-cntr-outer">

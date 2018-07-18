@@ -62,7 +62,7 @@ export default class CurrentGamesTable extends Component {
 	
 	render() {
 		let sticky = {
-			top: this.state.offset
+			transform: "translate(0px, " + this.state.offset + "px)"
 		};
 		let outer = this.props.id + '-outer';
 		let inner = this.props.id + '-inner';
