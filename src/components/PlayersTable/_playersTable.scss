@@ -37,11 +37,11 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.rank {
-				width: 40px;
+				width: calc(10% - 20px);
 			}
 			
 			.name {
-				width: 115px;
+				width: calc(33.75% - 20px);
 				text-align: left;
 				white-space: nowrap;
 				text-overflow: ellipsis;
@@ -50,11 +50,11 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.elo {
-				width: 40px;
+				width: calc(15% - 20px);
 			}
 			
 			.winloss {
-				width: 134px;
+				width: calc(41.25% - 10px);
 				margin: 0;
 			}
 		}
@@ -63,7 +63,7 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 			.winloss {
 				position: relative;
 				vertical-align: top;
-				width: 124px;
+				width: calc(41.25% - 10px);
 				margin: 0;
 				font-size: 12px;
 				font-weight: bold;
@@ -144,6 +144,25 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 	#player-table-cntr-outer {
 		.player-table-title {
 			text-align: left;
+		}
+		
+		.player-table-row,
+		#player-table-header {
+			.rank {
+				width: 40px;
+			}
+			
+			.name {
+				width: 115px;
+			}
+			
+			.elo {
+				width: 40px;
+			}
+			
+			.winloss {
+				width: 134px;
+			}
 		}
 	}
 }
