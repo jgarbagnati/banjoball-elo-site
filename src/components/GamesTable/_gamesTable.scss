@@ -8,6 +8,7 @@
 		font-family: $primary-font;
 		font-size: 24px;
 		padding-bottom: 5px;
+		text-align: center;
 	}
 	
 	#games-table-cntr-inner, #current-games-table-cntr-inner {
@@ -78,5 +79,11 @@
 	border-bottom: solid 1px $outline-color;
 }
 
-#games-table-cntr-outer {
+@include mq("main-cntr", min) {
+	#games-table-cntr-outer, #current-games-table-cntr-outer {
+		.cntr-title {
+			text-align: left;
+		}
+	}
 }
+

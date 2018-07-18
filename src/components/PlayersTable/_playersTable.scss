@@ -13,6 +13,7 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 		font-family: $primary-font;
 		font-size: 24px;
 		padding-bottom: 5px;
+		text-align: center;
 	}
 
 	#player-table-cntr-inner {
@@ -135,6 +136,14 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 			background-color: $primary-color-layout;
 			border-bottom: solid 2px $outline-color;
 			padding-bottom: 2px;
+		}
+	}
+}
+
+@include mq("main-cntr", min) {
+	#player-table-cntr-outer {
+		.player-table-title {
+			text-align: left;
 		}
 	}
 }
