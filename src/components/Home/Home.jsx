@@ -13,7 +13,7 @@ export default class Home extends Component {
 		this.state = {
 			searchValue: '',
 			currSeason: 0,
-			height: window.innerHeight - 161
+			width: 0
 		}
 		
 		this.updateSearchBarValue = this.updateSearchBarValue.bind(this);
@@ -21,21 +21,21 @@ export default class Home extends Component {
 		this.search = this.search.bind(this);
 	}
 	
-	updateHeights() {
-		let height = 0;
-		if (window.innerWidth > MAIN_CNTR_BREAKPOINT) {
-			let left = document.getElementById('left-cntr');
-			let right = document.getElementById('right-cntr');
-			if (left !== null && right !== null) {
-				height = Math.max(left.clientHeight, right.clientHeight);
-			} else {
-				height = window.innerHeight - 161;
-			}
+	onResize() {
+		if (window.innerWidth < 400) {
+			this.setState({});
 		}
-		
-		this.setState({
-			height: height
-		});
+		if ((window.innerWidth <= MAIN_CNTR_BREAKPOINT &&
+			this.state.width > MAIN_CNTR_BREAKPOINT) ||
+			(window.innerWidth > MAIN_CNTR_BREAKPOINT &&
+			this.state.width <= MAIN_CNTR_BREAKPOINT)) {
+			this.setState({});
+		}
+		this.state.width = window.innerWidth;
+	}
+	
+	updateHeights() {
+		this.setState({});
 	}
 	
 	componentDidMount() {
@@ -58,8 +58,18 @@ export default class Home extends Component {
 	}
 	
 	render() {
+		let height = 0;
+		if (window.innerWidth > MAIN_CNTR_BREAKPOINT) {
+			let left = document.getElementById('left-cntr');
+			let right = document.getElementById('right-cntr');
+			if (left !== null && right !== null) {
+				height = Math.max(left.clientHeight, right.clientHeight);
+			} else {
+				height = window.innerHeight - 161;
+			}
+		}
 		let heightStyle = {
-			minHeight: this.state.height
+			minHeight: height
 		};
 		
 		let currMatches = (this.props.ongoing.length == 0)? null: 			
@@ -69,11 +79,21 @@ export default class Home extends Component {
 				players={this.props.players}
 				matches={this.props.ongoing}
 				updateHeights={this.updateHeights} />);
+		
+		let pageWidth = window.innerWidth;
+		let header = "Warcraft 3 Banjoball Elo, Season " + (this.state.currSeason + 1);
+		if (pageWidth < 650) {
+			if (pageWidth < 400) {
+				header = "WC3 Banjoball, S" + (this.state.currSeason + 1);
+			} else {
+				header = "WC3 Banjoball Elo, S" + (this.state.currSeason + 1);
+			}
+		}
 		return (
 			<div id="home-cntr">
 				<div className="top-cntr">
 					<div className="header-cntr">
-						Warcraft 3 Banjoball Elo, Season {this.state.currSeason + 1}
+						{header}
 					</div>
 					<div className="search-cntr">
 						<SearchBar updateValue={this.updateSearchBarValue}

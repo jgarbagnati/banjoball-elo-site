@@ -23,8 +23,13 @@
 			padding-top: 6px;
 			padding-bottom: 14px;
 			padding-left: 20px;
-			width: calc(100% - 30px);
+			padding-right: 20px;
+			width: calc(100% - 40px);
 			font-size: 36px;
+			overflow: none;
+			text-overflow: ellipsis;
+			text-align: center;
+			white-space: nowrap;
 		}
 	}
 	
@@ -53,7 +58,8 @@
 	#home-cntr {
 		.top-cntr {
 			.header-cntr {
-				width: 620px;
+				width: 610px;
+				text-align: left;
 			}
 			
 			.search-cntr {
