@@ -38,16 +38,15 @@
 		vertical-align: top;
 		position: relative;
 		min-height: $main-cntr-min-height;
+		width: 100%;
 	}
 	
 	#left-cntr {
-		width: 650px;
 		overflow-x: hidden;
 		margin-top: 0px;
 	}
 	
 	#right-cntr {
-		width: 100%;
 		border-bottom: 1px solid $outline-color;
 		overflow-x: hidden;
 		margin-top: 62px;
@@ -78,6 +77,10 @@
 			width: 449px;
 			border-bottom: none;
 			border-left: 1px solid $outline-color;
+		}
+		
+		#left-cntr {
+			width: 650px;
 		}
 	}
 }
