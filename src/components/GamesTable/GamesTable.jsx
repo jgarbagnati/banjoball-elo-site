@@ -18,7 +18,7 @@ export default class CurrentGamesTable extends Component {
 		super(props);
 		
 		this.state = {
-			offset: 0
+			offset: 18
 		}
 		
 		this.onScroll = this.onScroll.bind(this);
@@ -36,7 +36,7 @@ export default class CurrentGamesTable extends Component {
 	onScroll() {
 		let cntr = document.getElementById(this.props.id + '-inner');
 		let bnd = cntr.getBoundingClientRect();
-		let offset = Math.min(bnd.height-145, Math.max(0, -bnd.top));
+		let offset = Math.max(18, (Math.min(bnd.height-147, Math.max(18, -bnd.top))) - 20);
 		this.setState({
 			offset: offset
 		});
@@ -69,7 +69,6 @@ export default class CurrentGamesTable extends Component {
 		
 		return (
 			<div id={outer}>
-				<div className='cntr-title'>{this.props.header}</div>
 				<div id={inner}>
 					<div className='table-header' style={sticky}>
 						<div className='match'> Match </div>
@@ -79,6 +78,7 @@ export default class CurrentGamesTable extends Component {
 					</div>
 					{this.displayMatchRows()}
 				</div>
+				<div className='cntr-title'>{this.props.header}</div>
 			</div>
 		);
 	}

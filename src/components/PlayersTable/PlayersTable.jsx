@@ -18,7 +18,7 @@ export default class PlayersTable extends Component {
 		super(props);
 		
 		this.state = {
-			offset: 0
+			offset: 18
 		}
 		
 		this.onScroll = this.onScroll.bind(this);
@@ -36,7 +36,7 @@ export default class PlayersTable extends Component {
 	onScroll() {
 		let cntr = document.getElementById("player-table-cntr-inner");
 		let bnd = cntr.getBoundingClientRect();
-		let offset = Math.min(bnd.height-74, Math.max(0, -bnd.top));
+		let offset = Math.max(18, (Math.min(bnd.height-75, Math.max(18, -bnd.top))) - 20);
 		this.setState({
 			offset: offset
 		});
@@ -64,7 +64,6 @@ export default class PlayersTable extends Component {
 		};
 		return (
 			<div id="player-table-cntr-outer">
-				<div className='player-table-title'>Leaderboard</div>
 				<div id='player-table-cntr-inner'>
 					{this.displayLeaderboardRows()}
 					<div id='player-table-header' style={sticky}>
@@ -74,6 +73,7 @@ export default class PlayersTable extends Component {
 						<div className='winloss'> Win/Loss </div>
 					</div>
 				</div>
+				<div className='player-table-title'>Leaderboard</div>
 			</div>
 		);
 	}

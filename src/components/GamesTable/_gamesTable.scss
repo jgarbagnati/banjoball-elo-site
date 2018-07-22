@@ -4,7 +4,9 @@
 	padding: 20px;
 	
 	.cntr-title {
-		width: 100%;
+		position: absolute;
+		top: 20px;
+		width: calc(100% - 40px);
 		font-family: $primary-font;
 		font-size: 24px;
 		padding-bottom: 5px;
@@ -15,7 +17,7 @@
 		position: relative;
 		font-family: $secondary-font;
 		font-size: 16px;
-		padding-top: 34px;
+		padding-top: 74px;
 		
 		.table-row, .table-header {
 			width: calc(100% - 20px);
@@ -66,10 +68,11 @@
 		.table-header {
 			height: 19px;
 			position: absolute;
-			top: 0;
+			top: -30px;
 			font-family: $primary-font;
 			background-color: $primary-color-layout;
 			border-bottom: solid 2px $outline-color;
+			padding-top: 63px;
 			padding-bottom: 2px;
 			
 			.team1, .team2 {
