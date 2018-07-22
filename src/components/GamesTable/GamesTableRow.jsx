@@ -39,7 +39,7 @@ export default class GamesTableRow extends Component {
 				<div className='scores'>
 					{this.state.scores}
 				</div>
-				<div className='team1'>
+				<div className='team2'>
 					<div className='player'>{this.props.p5}</div>
 					<div className='player'>{this.props.p6}</div>
 					<div className='player'>{this.props.p7}</div>

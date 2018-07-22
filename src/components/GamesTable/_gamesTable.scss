@@ -16,13 +16,14 @@
 	#games-table-cntr-inner, #current-games-table-cntr-inner {
 		position: relative;
 		font-family: $secondary-font;
-		font-size: 16px;
+		font-size: 12px;
 		padding-top: 74px;
 		
 		.table-row, .table-header {
 			width: calc(100% - 20px);
 			padding: 10px;
-			padding-top: 11px;
+			padding-top: 18px;
+			padding-bottom: 3px;
 			overflow: hidden;
 			
 			.match, .team1, .scores, .team2 {
@@ -36,7 +37,7 @@
 			}
 			
 			.team1, .team2 {
-				width: calc(35% - 20px);
+				width: calc(35% - 10px);
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
@@ -49,6 +50,10 @@
 						margin-bottom: 0px;
 					}
 				}
+			}
+			
+			.team2 {
+				margin-right: 0px;
 			}
 			
 			.scores {
@@ -84,6 +89,23 @@
 
 #current-games-table-cntr-outer {
 	border-bottom: solid 1px $outline-color;
+}
+
+@inclue mq("mobile", min) {
+	#games-table-cntr-outer, #current-games-table-cntr-outer {
+		.cntr-title {
+			text-align: left;
+		}
+		
+		#games-table-cntr-inner, #current-games-table-cntr-inner {
+			font-size: 16px;
+			
+			.table-row {
+				padding-top: 11px;
+				padding-bottom: 5px;
+			}
+		}
+	}
 }
 
 @include mq("main-cntr", min) {
