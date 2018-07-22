@@ -22,7 +22,7 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 	#player-table-cntr-inner {
 		position: relative;
 		font-family: $secondary-font;
-		font-size: 16px;
+		font-size: 12px;
 		padding-top: 74px;
 		
 		.player-table-row,
@@ -31,6 +31,7 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 			height: 19px;
 			padding: 10px;
 			overflow: hidden;
+			margin-top: 2px;
 			
 			.rank, .name, .elo, .winloss {
 				display: inline-block;
@@ -39,7 +40,7 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.rank {
-				width: calc(10% - 20px);
+				width: calc(15% - 20px);
 			}
 			
 			.name {
@@ -56,7 +57,7 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 			}
 			
 			.winloss {
-				width: calc(41.25% - 10px);
+				width: 36.25%;
 				margin: 0;
 			}
 		}
@@ -65,16 +66,15 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 			.winloss {
 				position: relative;
 				vertical-align: top;
-				width: calc(41.25% - 10px);
 				margin: 0;
 				font-size: 12px;
 				font-weight: bold;
 				
 				.winloss-bar {
 					position: absolute;
-					width: calc(100% - 40px);
+					width: calc(100% - 30px);
 					height: 24px;
-					top: -4px;
+					top: -3px;
 					background-color: $winloss-loss-color;
 					border: solid 1px $outline-color;
 					border-radius: 3px;
@@ -88,8 +88,8 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 						
 						.txt {
 							position: absolute;
-							font-size: 12px;
-							top: 5px;
+							font-size: 9px;
+							top: 6px;
 							
 							&.left {
 								left: 4px;
@@ -116,9 +116,10 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 				.winloss-rate {
 					position: absolute;
 					right: -11px;
-					top: 2px;
+					top: 4px;
 					text-align: center;
 					width: 40px;
+					font-size: 9px;
 				}
 			}
 		}
@@ -128,6 +129,10 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 			
 			&.alt {
 				background-color: $table-color-secondary;
+			}
+			
+			.rank, .name, .elo {
+				margin-top: 3px;
 			}
 		}
 		
@@ -143,28 +148,75 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 	}
 }
 
+@include mq("mobile", min) {
+	#player-table-cntr-outer {
+		#player-table-cntr-inner {
+			.player-table-row,
+			#player-table-header {
+				font-size: 16px;
+				margin-top: 0px;
+				
+				.rank {
+					width: calc(10% - 20px);
+				}
+				
+				.winloss {
+					width: calc(41.25% - 10px);
+				}
+			}
+			
+			.player-table-row {
+				.rank, .name, .elo {
+					margin-top: 0px;
+				}
+				
+				.winloss {
+					.winloss-bar {
+						width: calc(100% - 40px);
+						top: -4px;
+						
+						.txt-cntr {
+							.txt {
+								font-size: 12px;
+								top: 5px;
+							}
+						}
+					}
+					
+					.winloss-rate {
+						font-size: 12px;
+						top: 2px;
+					}
+				}
+			}
+		}
+	}
+}
+
 @include mq("main-cntr", min) {
 	#player-table-cntr-outer {
-		.player-table-title {
-			text-align: left;
-		}
-		
-		.player-table-row,
-		#player-table-header {
-			.rank {
-				width: 40px;
+		#player-table-cntr-inner {
+			.player-table-title {
+				text-align: left;
 			}
 			
-			.name {
-				width: 115px;
-			}
-			
-			.elo {
-				width: 40px;
-			}
-			
-			.winloss {
-				width: 134px;
+			.player-table-row,
+			#player-table-header {
+				.rank {
+					width: 40px;
+				}
+				
+				.name {
+					width: 115px;
+				}
+				
+				.elo {
+					width: 40px;
+				}
+				
+				.winloss {
+					width: 134px;
+				}
 			}
 		}
 	}

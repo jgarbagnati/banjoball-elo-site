@@ -76,9 +76,18 @@ $main-cntr-min-height: calc(100vh - 161px);
 	#main-cntr {
 		position: relative;
 		background-color: $primary-color-layout;
-		width: 90%;
-		left: 5%;
+		width: 100%;
+		left: 0%;
 		min-height: $main-cntr-min-height;
+	}
+}
+
+@include mq("mobile", min) {
+	#inferno-root {
+		#main-cntr {
+			width: 90%;
+			left: 5%;
+		}
 	}
 }
 
