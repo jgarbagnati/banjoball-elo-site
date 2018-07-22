@@ -20,12 +20,9 @@
 		}
 	
 		.header-cntr {
-			padding-top: 6px;
-			padding-bottom: 14px;
-			padding-left: 20px;
-			padding-right: 20px;
+			padding: 10px 20px;
 			width: calc(100% - 40px);
-			font-size: 36px;
+			font-size: 32px;
 			overflow: none;
 			text-overflow: ellipsis;
 			text-align: center;
@@ -50,6 +47,20 @@
 		border-bottom: 1px solid $outline-color;
 		overflow-x: hidden;
 		margin-top: 62px;
+	}
+}
+
+@include mq("mobile", min) {
+	#home-cntr {
+		.top-cntr {
+			.header-cntr {
+				padding-top: 6px;
+				padding-bottom: 14px;
+				padding-left: 20px;
+				padding-right: 20px;
+				font-size: 36px;
+			}
+		}
 	}
 }
 

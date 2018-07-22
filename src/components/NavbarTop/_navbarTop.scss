@@ -14,10 +14,9 @@
 		
 		.icon {
 			position: absolute;
-			left: 5%;
 			width: 277px;
 			height: 60px;
-			
+			left: calc(50% - 138px);
 			background: url(../res/logo/logo.png) no-repeat center center;
 			background-size: cover;
 			cursor: pointer;
@@ -59,6 +58,14 @@
 					border-color: #fff;
 				}
 			}
+		}
+	}
+}
+
+@include mq("mobile", min) {
+	#nav-bar-top {
+		.top-cntr .icon {
+			left: 5%;
 		}
 	}
 }
