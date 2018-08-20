@@ -91,18 +91,19 @@
 	border-bottom: solid 1px $outline-color;
 }
 
-@inclue mq("mobile", min) {
+@include mq("mobile", min) {
 	#games-table-cntr-outer, #current-games-table-cntr-outer {
-		.cntr-title {
-			text-align: left;
-		}
-		
 		#games-table-cntr-inner, #current-games-table-cntr-inner {
-			font-size: 16px;
+			.cntr-title {
+				text-align: left;
+			}
 			
+			.table-row, .table-header {
+				font-size: 16px;
+			}
 			.table-row {
 				padding-top: 11px;
-				padding-bottom: 5px;
+				padding-bottom: 11px;
 			}
 		}
 	}
@@ -110,21 +111,19 @@
 
 @include mq("main-cntr", min) {
 	#games-table-cntr-outer, #current-games-table-cntr-outer {
-		.cntr-title {
-			text-align: left;
-		}
-		
-		.table-row, .table-header {
-			.match {
-				width: 50px;
-			}
-			
-			.team1, .team2 {
-				width: 200px;
-			}
-			
-			.scores {
-				width: 60px;
+		#games-table-cntr-inner, #current-games-table-cntr-inner {
+			.table-row, .table-header {
+				.match {
+					width: 50px;
+				}
+				
+				.team1, .team2 {
+					width: 200px;
+				}
+				
+				.scores {
+					width: 60px;
+				}
 			}
 		}
 	}

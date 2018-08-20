@@ -18,7 +18,9 @@ export default class PlayersTable extends Component {
 		super(props);
 		
 		this.state = {
-			offset: 18
+			offset: 18,
+			pageSize: 25,
+			page: 0
 		}
 		
 		this.onScroll = this.onScroll.bind(this);
@@ -44,7 +46,10 @@ export default class PlayersTable extends Component {
 	
 	displayLeaderboardRows() {
 		let rows = [];
-		for (let i = 0; i < this.props.players.length; ++i) {
+		let start = this.state.page * this.state.pageSize;
+		let end = Math.min(this.props.players.length,
+			(this.state.page + 1) * this.state.pageSize);
+		for (let i = start; i < end; ++i) {
 			let rank = i+1;
 			let player = this.props.players[i];
 			let name = player.name;

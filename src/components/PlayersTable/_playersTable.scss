@@ -151,6 +151,10 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 @include mq("mobile", min) {
 	#player-table-cntr-outer {
 		#player-table-cntr-inner {
+			.player-table-title {
+				text-align: left;
+			}
+			
 			.player-table-row,
 			#player-table-header {
 				font-size: 16px;
@@ -196,10 +200,6 @@ $winloss-font-color: lighten($navbar-secondary-color, 50%);
 @include mq("main-cntr", min) {
 	#player-table-cntr-outer {
 		#player-table-cntr-inner {
-			.player-table-title {
-				text-align: left;
-			}
-			
 			.player-table-row,
 			#player-table-header {
 				.rank {

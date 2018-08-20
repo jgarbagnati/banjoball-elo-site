@@ -1,6 +1,6 @@
 $breakpoints: (
-    "main-cntr": 1240px,
-    "mobile":  550px
+    "mobile":  550px,
+    "main-cntr": 1240px
 );
 
 @mixin mq($width, $type: min) {

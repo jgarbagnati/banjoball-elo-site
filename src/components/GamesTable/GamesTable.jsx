@@ -18,7 +18,9 @@ export default class CurrentGamesTable extends Component {
 		super(props);
 		
 		this.state = {
-			offset: 18
+			offset: 18,
+			pageSize: 10,
+			page: 0
 		}
 		
 		this.onScroll = this.onScroll.bind(this);
@@ -44,7 +46,10 @@ export default class CurrentGamesTable extends Component {
 	
 	displayMatchRows() {
 		let rows = [];
-		for (let i = 0; i < this.props.matches.length; ++i) {
+		let start = this.state.page * this.state.pageSize;
+		let end = Math.min(this.props.matches.length,
+			(this.state.page + 1) * this.state.pageSize);
+		for (let i = start; i < end; ++i) {
 			let game = this.props.matches[i];
 			let players = [game.p1, game.p2, game.p3, game.p4,
 			               game.p5, game.p6, game.p7, game.p8];
