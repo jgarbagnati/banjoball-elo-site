@@ -5,67 +5,71 @@ import Home from './components/Home/Home';
 import Loading from './components/Loading/Loading';
 import Season from './components/Season/Season';
 
+const PLAYER_API = 'http://elo.banjoball.net:8080/api/players/';
+const MATCH_API  = 'http://elo.banjoball.net:8080/api/matches/';
+
+function xhrGet(url, onSuccess) {
+	const xhr = new XMLHttpRequest();
+	xhr.open('GET', url, true);
+	xhr.responseType = 'JSON';
+	xhr.onload = () => onSuccess(xhr.response);
+	xhr.send();
+}
+
 export default class App extends Component {
 	constructor(props) {
 		super(props);
 		
 		this.state = {
-			lastXhr: null,
 			loading: true,
 			players: [],
 			playerMap: {},
 			ongoing: [],
-			matches: [],
-			db: null
+			matches: []
 		};
 		
 		this.update = this.update.bind(this);
-		this.onDB = this.onDB.bind(this);
 		this.getPlayerById = this.getPlayerById.bind(this);
 	}
 	
 	componentDidMount() {
 		setTimeout(() => {
-			let xhr = new XMLHttpRequest();
-			xhr.open('GET', './res/db/elo.db', true);
-			xhr.responseType = 'arraybuffer';
-			xhr.onload = this.onDB;
-			this.state.lastXhr = xhr;
-			xhr.send();
+			xhrGet(PLAYER_API, data => this.onPlayers(data));
 		}, 100);
 	}
 	
 	update() {
 		window.requestAnimationFrame(() => this.forceUpdate());
 	}
+
+	onPlayers(data) {
+		const playerList = JSON.parse(data);
+		
+		playerList.forEach(player => {
+			this.state.playerMap[player.ID] = player;
+			player.matches = [];
+			if (player.win > 0 || player.loss > 0) {
+				this.state.players.push(player);
+			}
+		});
+
+		// Get match data
+		xhrGet(MATCH_API, data => this.onMatches(data));
+	}
 	
-	onDB(e) {
-		let dbpath = new Uint8Array(this.state.lastXhr.response);
-		let db = new SQL.Database(dbpath);
+	onMatches(data) {
+		const matchList = JSON.parse(data);
 		
-		let query = db.prepare("SELECT ID,name,elo,win,loss FROM players ORDER BY elo desc");
-		while(query.step()) {
-			let obj = query.getAsObject();
-			this.state.playerMap[obj.ID] = obj;
-			obj.matches = [];
-			if (obj.win > 0 || obj.loss > 0) {
-				this.state.players.push(obj);
-			}
-		}
-		
-		query = db.prepare("SELECT ID,p1,p2,p3,p4,s1,s2,p5,p6,p7,p8 FROM games WHERE ID >= 0 ORDER BY ID desc;");
-		while(query.step()) {
-			let obj = query.getAsObject();
-			if (obj.s1 == null || obj.s2 == null) {
-				this.state.ongoing.push(obj);
+		matchList.forEach(match => {
+			if (match.s1 == null || match.s2 == null) {
+				this.state.ongoing.push(match);
 			} else {
-				this.state.matches.push(obj);
+				this.state.matches.push(match);
 			}
-		}
-		
+		});
+
 		this.setState({
-			loading: false,
-			db: db
+			loading: false
 		});
 	}
 	
@@ -89,8 +93,7 @@ export default class App extends Component {
 								<Home getPlayerById={this.getPlayerById}
 									players={this.state.players}
 									matches={this.state.matches}
-									ongoing={this.state.ongoing}
-									db={this.state.db} />} />
+									ongoing={this.state.ongoing} />} />
 							<Route path="/season-1" render={() =><Season season={1} />} />
 						</Switch>
 					</div>
