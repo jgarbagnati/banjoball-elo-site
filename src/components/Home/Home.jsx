@@ -12,7 +12,7 @@ export default class Home extends Component {
 		
 		this.state = {
 			searchValue: '',
-			currSeason: 0,
+			currSeason: 1,
 			width: 0
 		}
 		

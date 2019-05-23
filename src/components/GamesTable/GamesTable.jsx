@@ -19,7 +19,7 @@ export default class CurrentGamesTable extends Component {
 		
 		this.state = {
 			offset: 18,
-			pageSize: 10,
+			pageSize: 10000, //50,
 			page: 0
 		}
 		

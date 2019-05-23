@@ -19,7 +19,7 @@ export default class PlayersTable extends Component {
 		
 		this.state = {
 			offset: 18,
-			pageSize: 25,
+			pageSize: 10000, //25,
 			page: 0
 		}
 		
