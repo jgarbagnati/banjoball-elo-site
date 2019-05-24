@@ -122,7 +122,17 @@ export default class App extends Component {
 									players={this.state.players[this.state.season - 1]}
 									matches={this.state.matches[this.state.season - 1]}
 									ongoing={this.state.ongoing} />} />
-							<Route path="/season-1" render={() =><Season season={1} />} />
+							<Route path="/season-1/" render={() =>
+								<Season season={1} 
+									getPlayerById={id => this.getPlayerById(0, id)}
+									players={this.state.players[0]}
+									matches={this.state.matches[0]} />}/>} />
+							<Route path="/season-2/" render={() =>
+								<Season season={2} 
+									getPlayerById={id => this.getPlayerById(1, id)}
+									players={this.state.players[1]}
+									matches={this.state.matches[1]}
+									ongoing={this.state.ongoing} />}/>} />
 						</Switch>
 					</div>
 					{loading}
