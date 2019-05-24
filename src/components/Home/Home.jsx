@@ -1,7 +1,7 @@
 import {Component} from 'inferno';
 import {Link, NavLink} from 'inferno-router';
 import SearchBar from '../SearchBar/SearchBar';
-import PlayersTable from '../PlayersTable/PlayersTable';		
+import PlayersTable from '../PlayersTable/PlayersTable';
 import GamesTable from '../GamesTable/GamesTable';
 
 const MAIN_CNTR_BREAKPOINT = 1240;
@@ -12,7 +12,6 @@ export default class Home extends Component {
 		
 		this.state = {
 			searchValue: '',
-			currSeason: 1,
 			width: 0
 		}
 		
@@ -76,19 +75,13 @@ export default class Home extends Component {
 			(<GamesTable id={'current-games-table-cntr'} 
 				header={"Current Matches"}
 				getPlayerById={this.props.getPlayerById}
+				pageSize={10}
 				players={this.props.players}
 				matches={this.props.ongoing}
 				updateHeights={this.updateHeights} />);
 		
 		let pageWidth = window.innerWidth;
-		let header = "Warcraft 3 Banjoball Elo, Season " + (this.state.currSeason + 1);
-		if (pageWidth < 650) {
-			if (pageWidth < 400) {
-				header = "WC3 Banjoball, S" + (this.state.currSeason + 1);
-			} else {
-				header = "WC3 Banjoball Elo, S" + (this.state.currSeason + 1);
-			}
-		}
+		let header = "Warcraft 3 Banjoball Elo";
 		return (
 			<div id="home-cntr">
 				<div className="top-cntr">
@@ -104,6 +97,7 @@ export default class Home extends Component {
 					<PlayersTable db={this.props.db}
 						players={this.props.players}
 						matches={this.props.matches}
+						pageSize={25}
 						updateHeights={this.updateHeights} />
 				</div>
 				<div id="left-cntr" style={heightStyle}>
@@ -111,6 +105,7 @@ export default class Home extends Component {
 					<GamesTable id={'games-table-cntr'} 
 						header={"Match History"}
 						getPlayerById={this.props.getPlayerById}
+						pageSize={10}
 						players={this.props.players}
 						matches={this.props.matches}
 						updateHeights={this.updateHeights} />
