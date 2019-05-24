@@ -19,7 +19,6 @@ export default class PlayersTable extends Component {
 		
 		this.state = {
 			offset: 18,
-			pageSize: 10000, //25,
 			page: 0
 		}
 		
@@ -45,10 +44,10 @@ export default class PlayersTable extends Component {
 	}
 	
 	displayLeaderboardRows() {
-		let rows = [];
-		let start = this.state.page * this.state.pageSize;
-		let end = Math.min(this.props.players.length,
-			(this.state.page + 1) * this.state.pageSize);
+		const pageSize = (this.props.pageSize === undefined)? this.props.players.length: this.props.pageSize;
+		const start = this.state.page * pageSize;
+		const end = Math.min(this.props.players.length, (this.state.page + 1) * pageSize);
+		const rows = [];
 		for (let i = start; i < end; ++i) {
 			let rank = i+1;
 			let player = this.props.players[i];
