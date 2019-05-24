@@ -93,7 +93,6 @@ export default class App extends Component {
 			xhrGet(MATCH_API + this.state.curr + 1 + "/", data => this.onMatches(data));
 		} else {
 			// Finish loading
-			console.log(this.state);
 			this.setState({
 				loading: false
 			});
@@ -126,7 +125,8 @@ export default class App extends Component {
 								<Season season={1} 
 									getPlayerById={id => this.getPlayerById(0, id)}
 									players={this.state.players[0]}
-									matches={this.state.matches[0]} />}/>} />
+									matches={this.state.matches[0]}
+									ongoing={[]} />}/>} />
 							<Route path="/season-2/" render={() =>
 								<Season season={2} 
 									getPlayerById={id => this.getPlayerById(1, id)}
