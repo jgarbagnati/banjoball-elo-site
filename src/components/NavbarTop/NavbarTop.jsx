@@ -24,6 +24,12 @@ export default class NavbarTop extends Component {
 						<NavLink to="/" exact activeClassName="active">
 							<div onclick={this.refresh} className='nav-season-btn'> Home </div>
 						</NavLink>
+						<NavLink to="/season-2/" exact activeClassName="active">
+							<div onclick={this.refresh} className='nav-season-btn'> Season 2 </div>
+						</NavLink>
+						<NavLink to="/season-1/" exact activeClassName="active">
+							<div onclick={this.refresh} className='nav-season-btn'> Season 1 </div>
+						</NavLink>
 					</div>
 				</div>
 			</div>
