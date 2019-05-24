@@ -5,6 +5,7 @@ import Home from './components/Home/Home';
 import Loading from './components/Loading/Loading';
 import Season from './components/Season/Season';
 
+const SEASON_API = 'http://elo.banjoball.net:8080/api/season/';
 const PLAYER_API = 'http://elo.banjoball.net:8080/api/players/';
 const MATCH_API  = 'http://elo.banjoball.net:8080/api/matches/';
 
@@ -22,19 +23,24 @@ export default class App extends Component {
 		
 		this.state = {
 			loading: true,
-			players: [],
-			playerMap: {},
-			ongoing: [],
-			matches: []
+			season: 1,
+			curr: 0,
+			players: [[], []],
+			playerMap: [{}, {}],
+			matches: [[], []],
+			ongoing: []
 		};
 		
 		this.update = this.update.bind(this);
 		this.getPlayerById = this.getPlayerById.bind(this);
+		this.onSeason = this.onSeason.bind(this);
+		this.onPlayers = this.onPlayers.bind(this);
+		this.onMatches = this.onMatches.bind(this);
 	}
 	
 	componentDidMount() {
 		setTimeout(() => {
-			xhrGet(PLAYER_API, data => this.onPlayers(data));
+			xhrGet(SEASON_API, data => this.onSeason(data));
 		}, 100);
 	}
 	
@@ -42,39 +48,60 @@ export default class App extends Component {
 		window.requestAnimationFrame(() => this.forceUpdate());
 	}
 
+	onSeason(data) {
+		this.state.season = JSON.parse(data).currentSeason;
+		this.state.curr = this.state.season - 1;
+		xhrGet(PLAYER_API + this.state.season + "/", data => this.onPlayers(data));
+	}
+
 	onPlayers(data) {
 		const playerList = JSON.parse(data);
-		
+		this.state.playerMap[this.state.curr] = {};
+		this.state.players[this.state.curr] = [];
 		playerList.forEach(player => {
-			this.state.playerMap[player.ID] = player;
+			this.state.playerMap[this.state.curr][player.ID] = player;
 			player.matches = [];
 			if (player.win > 0 || player.loss > 0) {
-				this.state.players.push(player);
+				this.state.players[this.state.curr].push(player);
 			}
 		});
 
-		// Get match data
-		xhrGet(MATCH_API, data => this.onMatches(data));
+		if (this.state.curr > 0) {
+			this.state.curr = this.state.curr - 1;
+			xhrGet(PLAYER_API + this.state.curr + 1 + "/", data => this.onPlayers(data));
+		} else {
+			// Get match data
+			this.state.curr = this.state.season - 1;
+			xhrGet(MATCH_API + this.state.season + "/", data => this.onMatches(data));
+		}
 	}
 	
 	onMatches(data) {
 		const matchList = JSON.parse(data);
 		
+		this.state.matches[this.state.curr] = [];
 		matchList.forEach(match => {
 			if (match.s1 == null || match.s2 == null) {
 				this.state.ongoing.push(match);
 			} else {
-				this.state.matches.push(match);
+				this.state.matches[this.state.curr].push(match);
 			}
 		});
 
-		this.setState({
-			loading: false
-		});
+		if (this.state.curr > 0) {
+			this.state.curr = this.state.curr - 1;
+			xhrGet(MATCH_API + this.state.curr + 1 + "/", data => this.onMatches(data));
+		} else {
+			// Finish loading
+			console.log(this.state);
+			this.setState({
+				loading: false
+			});
+		}
 	}
 	
-	getPlayerById(id) {
-		return this.state.playerMap[id];
+	getPlayerById(season, id) {
+		return this.state.playerMap[season][id];
 	}
 	
 	render() {
@@ -90,9 +117,10 @@ export default class App extends Component {
 					<div id="main-cntr">
 						<Switch>
 							<Route exact path="/" render={() =>
-								<Home getPlayerById={this.getPlayerById}
-									players={this.state.players}
-									matches={this.state.matches}
+								<Home season={this.state.season}
+									getPlayerById={id => this.getPlayerById(this.state.season - 1, id)}
+									players={this.state.players[this.state.season - 1]}
+									matches={this.state.matches[this.state.season - 1]}
 									ongoing={this.state.ongoing} />} />
 							<Route path="/season-1" render={() =><Season season={1} />} />
 						</Switch>
