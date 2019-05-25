@@ -54,7 +54,7 @@ export default class CurrentGamesTable extends Component {
 			for (let j = 0; j < players.length; ++j) {
 				players[j] = this.props.getPlayerById(players[j]).name;
 			}
-			rows.push(<GamesTableRow alt={i%2==1} match={game.ID}
+			rows.push(<GamesTableRow key={`${this.props.season}-${game.ID}`} alt={i%2==1} match={game.ID}
 				p1={players[0]} p2={players[1]} p3={players[2]} p4={players[3]}
 				p5={players[4]} p6={players[5]} p7={players[6]} p8={players[7]}
 				s1={game.s1} s2={game.s2} />);

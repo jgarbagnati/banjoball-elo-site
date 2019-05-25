@@ -69,7 +69,7 @@ export default class Season extends Component {
 			}
 		}
 		return (
-			<div id="season-cntr">
+			<div id={`season-${this.props.season}`} class='season-cntr'>
 				<div className="top-cntr">
 					<div className="header-cntr">
 						{header}

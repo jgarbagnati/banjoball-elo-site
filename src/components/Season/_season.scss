@@ -1,4 +1,4 @@
-#season-cntr {
+.season-cntr {
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -47,11 +47,12 @@
 		border-bottom: 1px solid $outline-color;
 		overflow-x: hidden;
 		margin-top: 62px;
+		float: right;
 	}
 }
 
 @include mq("mobile", min) {
-	#season-cntr {
+	.season-cntr {
 		.top-cntr {
 			.header-cntr {
 				padding-top: 6px;
@@ -61,11 +62,15 @@
 				font-size: 36px;
 			}
 		}
+
+		#right-cntr {
+			float: none;
+		}
 	}
 }
 
 @include mq("main-cntr", min) {
-	#season-cntr {
+	.season-cntr {
 		.top-cntr {
 			.header-cntr {
 				width: 610px;
