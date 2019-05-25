@@ -26,7 +26,6 @@ export default class CurrentGamesTable extends Component {
 	}
 	
 	componentDidMount() {
-		this.props.updateHeights();
 		root.addEventListener('scroll', this.onScroll);
 	}
 	
@@ -72,7 +71,7 @@ export default class CurrentGamesTable extends Component {
 		let inner = this.props.id + '-inner';
 		
 		return (
-			<div id={outer}>
+			<div id={outer} class={`season-${this.props.season}`}>
 				<div id={inner}>
 					<div className='table-header' style={sticky}>
 						<div className='match'> Match </div>

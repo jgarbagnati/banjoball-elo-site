@@ -12,7 +12,7 @@ const MATCH_API  = 'http://elo.banjoball.net:8080/api/matches/';
 function xhrGet(url, onSuccess) {
 	const xhr = new XMLHttpRequest();
 	xhr.open('GET', url, true);
-	xhr.responseType = 'JSON';
+	xhr.responseType = '';
 	xhr.onload = () => onSuccess(xhr.response);
 	xhr.send();
 }

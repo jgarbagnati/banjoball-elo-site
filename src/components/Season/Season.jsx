@@ -12,12 +12,10 @@ export default class Season extends Component {
 		
 		this.state = {
 			searchValue: '',
-			currSeason: 1,
 			width: 0
 		}
 		
 		this.updateSearchBarValue = this.updateSearchBarValue.bind(this);
-		this.updateHeights = this.updateHeights.bind(this);
 		this.search = this.search.bind(this);
 	}
 	
@@ -34,18 +32,12 @@ export default class Season extends Component {
 		this.state.width = window.innerWidth;
 	}
 	
-	updateHeights() {
-		this.setState({});
-	}
-	
 	componentDidMount() {
 		this.setState({});
-		window.addEventListener("resize", this.updateHeights);
 	}
 	
 	updateSearchBarValue(val) {
 		this.state.searchValue = val;
-		window.removeEventListener("resize", this.updateHeights);
 	}
 	
 	search() {
@@ -58,28 +50,14 @@ export default class Season extends Component {
 	}
 	
 	render() {
-		let height = 0;
-		if (window.innerWidth > MAIN_CNTR_BREAKPOINT) {
-			let left = document.getElementById('left-cntr');
-			let right = document.getElementById('right-cntr');
-			if (left !== null && right !== null) {
-				height = Math.max(left.clientHeight, right.clientHeight);
-			} else {
-				height = window.innerHeight - 161;
-			}
-		}
-		let heightStyle = {
-			minHeight: height
-		};
-		
 		let currMatches = (this.props.ongoing.length == 0)? null: 			
-			(<GamesTable id={'current-games-table-cntr'} 
+			(<GamesTable season={this.props.season} 
+				id={'current-games-table-cntr'} 
 				header={"Current Matches"}
 				getPlayerById={this.props.getPlayerById}
 				pageSize={10}
 				players={this.props.players}
-				matches={this.props.ongoing}
-				updateHeights={this.updateHeights} />);
+				matches={this.props.ongoing} />);
 		
 		let pageWidth = window.innerWidth;
 		let header = "Warcraft 3 Banjoball Elo, Season " + (this.props.season);
@@ -101,20 +79,21 @@ export default class Season extends Component {
 							value={this.state.value} onSearch={this.search} />
 					</div>
 				</div>
-				<div id="right-cntr" style={heightStyle}>
-					<PlayersTable db={this.props.db}
+				<div id="right-cntr">
+					<PlayersTable season={this.props.season}
 						players={this.props.players}
 						matches={this.props.matches}
-						updateHeights={this.updateHeights} />
+	 />
 				</div>
-				<div id="left-cntr" style={heightStyle}>
+				<div id="left-cntr">
 					{currMatches}
-					<GamesTable id={'games-table-cntr'} 
+					<GamesTable season={this.props.season}
+						id={'games-table-cntr'} 
 						header={"Match History"}
 						getPlayerById={this.props.getPlayerById}
 						players={this.props.players}
 						matches={this.props.matches}
-						updateHeights={this.updateHeights} />
+	 />
 				</div>
 			</div>
 		);

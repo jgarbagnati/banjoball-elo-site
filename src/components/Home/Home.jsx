@@ -14,7 +14,6 @@ export default class Home extends Component {
 			searchValue: '',
 			width: 0
 		}
-		
 		this.updateSearchBarValue = this.updateSearchBarValue.bind(this);
 		this.updateHeights = this.updateHeights.bind(this);
 		this.search = this.search.bind(this);
@@ -39,6 +38,7 @@ export default class Home extends Component {
 	
 	componentDidMount() {
 		this.setState({});
+		this.updateHeights();
 		window.addEventListener("resize", this.updateHeights);
 	}
 	
@@ -57,20 +57,6 @@ export default class Home extends Component {
 	}
 	
 	render() {
-		let height = 0;
-		if (window.innerWidth > MAIN_CNTR_BREAKPOINT) {
-			let left = document.getElementById('left-cntr');
-			let right = document.getElementById('right-cntr');
-			if (left !== null && right !== null) {
-				height = Math.max(left.clientHeight, right.clientHeight);
-			} else {
-				height = window.innerHeight - 161;
-			}
-		}
-		let heightStyle = {
-			minHeight: height
-		};
-		
 		let currMatches = (this.props.ongoing.length == 0)? null: 			
 			(<GamesTable id={'current-games-table-cntr'} 
 				header={"Current Matches"}
@@ -93,14 +79,14 @@ export default class Home extends Component {
 							value={this.state.value} onSearch={this.search} />
 					</div>
 				</div>
-				<div id="right-cntr" style={heightStyle}>
+				<div id="right-cntr">
 					<PlayersTable db={this.props.db}
 						players={this.props.players}
 						matches={this.props.matches}
 						pageSize={25}
 						updateHeights={this.updateHeights} />
 				</div>
-				<div id="left-cntr" style={heightStyle}>
+				<div id="left-cntr">
 					{currMatches}
 					<GamesTable id={'games-table-cntr'} 
 						header={"Match History"}

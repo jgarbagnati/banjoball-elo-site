@@ -26,14 +26,13 @@ export default class PlayersTable extends Component {
 	}
 	
 	componentDidMount() {
-		this.props.updateHeights();
 		root.addEventListener('scroll', this.onScroll);
 	}
 	
 	componentWillUnmount() {
 		root.removeEventListener('scroll', this.onScroll, false);
 	}
-	
+
 	onScroll() {
 		let cntr = document.getElementById("player-table-cntr-inner");
 		let bnd = cntr.getBoundingClientRect();
@@ -55,7 +54,7 @@ export default class PlayersTable extends Component {
 			let elo = player.elo;
 			let wins = player.win;
 			let loss = player.loss;
-			rows.push(<PlayersTableRow rank={rank} name={name}
+			rows.push(<PlayersTableRow key={`${this.props.season}-${name}`} rank={rank} name={name}
 				elo={elo} wins={wins} loss={loss} alt={rank%2==0}/>);
 		}
 		
@@ -67,7 +66,7 @@ export default class PlayersTable extends Component {
 			transform: "translate(0px, " + this.state.offset + "px)"
 		};
 		return (
-			<div id="player-table-cntr-outer">
+			<div id="player-table-cntr-outer" class={`season-${this.props.season}`}>
 				<div id='player-table-cntr-inner'>
 					{this.displayLeaderboardRows()}
 					<div id='player-table-header' style={sticky}>
