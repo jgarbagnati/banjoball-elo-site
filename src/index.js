@@ -4,6 +4,7 @@ import NavbarTop from './components/NavbarTop/NavbarTop';
 import Home from './components/Home/Home';
 import Loading from './components/Loading/Loading';
 import Season from './components/Season/Season';
+import './index.scss';
 
 const PLAYER_API = 'http://elo.banjoball.net:8080/api/players/';
 const MATCH_API  = 'http://elo.banjoball.net:8080/api/matches/';
